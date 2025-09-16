@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@layer utilities {
+    @keyframes slide-x {
+        0% {
+            transform: translateX(0);
+        }
+        33% {
+            transform: translateX(-100%);
+        }
+        66% {
+            transform: translateX(-200%);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+    .animate-slide-x {
+        animation: slide-x 9s ease-in-out infinite;
+    }   
+}

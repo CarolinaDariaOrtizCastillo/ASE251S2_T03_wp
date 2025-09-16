@@ -1,0 +1,35 @@
+{
+<<<<<<< HEAD
+    "name": "tienda.io",
+    "version": "1.0.0",
+    "description": "Proyecto Flask con Tailwind CSS",
+    "main": "index.js",
+    "scripts": {
+        "build:css": "npx tailwindcss -i ./static/css/tailwind.css -o ./static/css/main.css --watch"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@tailwindcss/vite": "^4.0.9",
+        "autoprefixer": "^10.4.20",
+        "postcss": "^8.5.3",
+        "tailwindcss": "^3.4.17",
+        "tienda.io": "file:"
+    }
+=======
+  "name": "prototipo-web",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "npx tailwindcss -i ./static/css/input.css -o ./static/css/output.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "tailwindcss": "^4.1.11"
+  }
+>>>>>>> 154d9c7 (Primer commit)
+}

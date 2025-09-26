@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Sitio Web</title>
+    <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/carrusel.css') }}" rel="stylesheet">
+
+</head>
+
+<body class="">
+    <!--menu desplegable-->
+    <div class="">
+        <nav class="px-4 py-4 sm:flex sm:items-center sm:justify-between bg-sky-500 hover:bg-sky-700">
+            <section class="flex justify-between">
+                <button class="text-gray-700 sm:hidden">
+                    <svg class="w-6 h-6 fill-current" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
+                        <!--ícono de "hamburguesa" o "menú"-->
+                        <path
+                            d="M 0 7.5 L 0 12.5 L 50 12.5 L 50 7.5 Z M 0 22.5 L 0 27.5 L 50 27.5 L 50 22.5 Z M 0 37.5 L 0 42.5 L 50 42.5 L 50 37.5 Z">
+                        </path>
+                        <!--ícono de "hamburguesa" o "menú"-->
+                    </svg>
+                </button>
+            </section>
+            <div class="flex flex-col items-start mt-3 gap-2 sm:flex-row sm:m-0">
+                <button
+                    class="text-stone-50 hover:bg-stone-50 w-full text-left px-2 rounded hover:text-stone-50">Blog</button>
+                <button class="text-stone-50  w-full text-left px-2 rounded hover:text-stone-50">Docs</button>
+                <button
+                    class="text-stone-50 hover:bg-stone-50 w-full text-left px-2 rounded hover:text-stone-50">Contacto</button>
+            </div>
+        </nav>
+    </div>
+    <!--Fin menu desplegable-->
+
+    <!--carrusel-->
+    <div class="relative w-full max-w4xl overflow-hidden rounded-2xl shadow-lg">
+        <div class="carousel-track">
+            {% for img in imagenes %}
+            <img src="{{ img }}" class="w-full h-64 object-cover" alt="Image {{ loop.index }}">
+            {% endfor %}
+
+            {% for img in imagenes %}
+            <img src="{{ img }}" class="w-full h-64 object-cover" alt="Image {{ loop.index }}">
+            {% endfor %}
+
+        </div>
+    </div>
+    <!--Fin carrusel-->
+    
+    <!--cards-->
+    <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl relative group">
+        <img src="{{ url_for('static', filename='icon/usuario.png') }}" alt="Recurso educativo" alt="Recurso educativo"
+            class="h-80 w-72 object-cover rounded-t-xl" />
+        <div class="px-4 py-3 w-72">
+            <span class="text-gray-400 mr-3 uppercase text-xs">Recurso</span>
+            <p class="text-lg font-bold text-black truncate block capitalize">Innovación en Cañete</p>
+            <div class="flex items-center">
+                <p class="text-sm text-gray-600 cursor-auto my-3">Autor: Juana C.</p>
+                <button onclick="mostrarInfo(this)"
+                    class="ml-auto bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 transition text-sm">Ver
+                    más
+                </button>
+            </div>
+            <div class="info-extra hidden mt-2 text-sm text-gray-700">
+                Proyecto interdisciplinario que conecta tecnología y cultura local. Adaptado a estándares educativos
+                nacionales.
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- Animaciones predefinidas con class tailwind css-->
+    <button class="animated-bounce bg-blue-500 text-white px-4 py-2 rounded ">
+        Haz clic aquí
+    </button>
+    <button class="animated-SPING bg-blue-500 text-white px-4 py-2 rounded ">
+        Haz clic aquí
+    </button>
+    <!--Carrusel2-->
+    <div class="relative w-full overflow-hidden h-64 mt-10">
+        <div class="flex animate-slide-x">
+            <img src="{{ url_for('static', filename='image/banner1.png') }}" class="w-full h-64 object-cover" alt="Image 1">
+            <img src="{{ url_for('static', filename='image/banner2.png') }}" class="w-full h-64 object-cover" alt="Image 2">
+            <img src="{{ url_for('static', filename='image/banner3.png') }}" class="w-full h-64 object-cover" alt="Image 3">
+        </div>
+    </div>
+
+    <!--pie de pagina-->
+    <footer class="bg-gray-900 text-white py-6 mt-10">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-sm">&copy; {{ year }} Todos los derechos reservados.</p>
+            <p class="text-sm">Desarrollado con ❤️ por <a href="https://tusitio.com" class="underline">Tu Nombre</a></p>
+        </div>
+    </footer>
+    <!-- fin pie de pagina-->
+    <script src="{{ url_for('static', filename='js/card.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/carrusel.js') }}"></script>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Homepage -->
+  <url>
+    <loc>http://www.programatransitabilidadvallegrande.com/</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Presentación del Programa -->
+  <url>
+    <loc>http://www.transitabilidadvallegrande.com/presentacion</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Videos Introductorios -->
+  <url>
+    <loc>http://www.transitabilidadvallegrande.com/videos</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Inicio de Sesión -->
+  <url>
+    <loc>http://www.transitabilidadvallegrande.com/login</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Presentación del Programa -->
+  <url>
+    <loc>http://www.transitabilidadvallegrande.com/informacioninicial</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Registro de Estudiante -->
+  <url>
+    <loc>http://www.transitabilidadvallegrande.com/registro-estudiante</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Registro de Institución -->
+  <url>
+    <loc>http://www.transitabilidadvallegrande.com/registro-institucion</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Información de Contacto -->
+  <url>
+    <loc>http://www.transitabilidadvallegrande.com/contacto</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Redes Sociales -->
+  <url>
+    <loc>http://www.transitabilidadvallegrande.com/redes</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Enlaces Relacionados -->
+  <url>
+    <loc>http://www.transitabilidadvallegrande.com/enlaces</loc>
+    <lastmod>2025-09-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+</urlset>

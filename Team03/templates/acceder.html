@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceder - Programa de Transitabilidad</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='carrusel.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='paleta.css') }}">
+</head>
+
+<body>
+    <!-- ====== NAVBAR ====== -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='image/logo1.png') }}" alt="Logo Programa Transitabilidad">
+            <span>Transitabilidad</span>
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="{{ url_for('inicio') }}">Inicio</a></li>
+                <li><a href="{{ url_for('acceder') }}" class="active">Acceder</a></li>
+                <li><a href="{{ url_for('inscribete') }}">Inscríbete</a></li>
+                <li><a href="{{ url_for('masinfo') }}">Ver más</a></li>
+            </ul>
+        </nav>
+        <button class="menu-toggle" id="menu-toggle">☰</button>
+    </header>
+
+    <!-- ====== CONTENIDO ====== -->
+    <main>
+        <section class="contenido">
+            <h1 class="titulo">Acceder</h1>
+            <p class="texto2">Aquí irá el formulario o sección para acceder al sistema.</p>
+        </section>
+    </main>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="footer">
+        <p>&copy; 2025 Programa de Transitabilidad</p>
+    </footer>
+</body>
+
+</html>

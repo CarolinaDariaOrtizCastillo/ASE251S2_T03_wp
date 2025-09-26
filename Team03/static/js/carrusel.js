@@ -20,4 +20,6 @@ function prevSlide() {
 document.getElementById("next").addEventListener("click", nextSlide);
 document.getElementById("prev").addEventListener("click", prevSlide);
 
-setInterval(nextSlide, 3000); // Cambio automático cada 3 segundos
+// Cambio automático cada 3 segundos
+setInterval(nextSlide, 3000);
+

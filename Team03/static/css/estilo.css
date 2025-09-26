@@ -1,0 +1,69 @@
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: #FFFFFF;
+  margin: 0;
+  padding: 0;
+  color: #0a0a0a;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.logo {
+  display: block;
+  margin: 30px auto;
+  width: 250px; /* Ajusta según necesites */
+}
+
+.titulo {
+  font-family: 'Raleway', sans-serif;
+  font-size: 60px;
+  color: #1E3A8A;
+  text-align: center;
+}
+
+.texto1 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 48px;
+  text-align: center;
+}
+
+.texto2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+.texto3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+}
+
+.texto4 {
+  font-size: 16px;
+}
+
+.btn {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 10px 5px;
+}
+
+.btn1 {
+  background-color: #10B981;
+  color: white;
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.4);
+}
+
+.btn2 {
+  background-color: #FACC15;
+  color: #0a0a0a;
+  box-shadow: 0 4px 10px rgba(250, 204, 21, 0.4);
+}

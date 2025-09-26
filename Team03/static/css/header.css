@@ -1,0 +1,96 @@
+/* ====== NAVBAR ====== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1E3A8A; /* azul fuerte */
+  padding: 10px 30px;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Logo */
+.navbar .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar .logo img {
+  height: 50px; /* tamaño del logo */
+  width: auto;
+}
+
+.navbar .logo span {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* Menú */
+.menu ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.menu ul li {
+  display: inline-block;
+}
+
+.menu ul li a {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* espacio entre icono y texto */
+  padding: 8px 15px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.menu ul li a:hover,
+.menu ul li a.active {
+  background: #2563EB; /* azul más claro */
+}
+
+/* Botón móvil (solo en pantallas pequeñas) */
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background: #1E3A8A;
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  .menu.open {
+    display: flex;
+  }
+
+  .menu ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}

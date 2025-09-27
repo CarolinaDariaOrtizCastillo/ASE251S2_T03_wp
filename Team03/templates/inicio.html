@@ -1,135 +1,135 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Programa de Transitabilidad</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programa de Transitabilidad</title>
 
-  <!-- Fuentes Google -->
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Poppins:wght@400;600&family=Raleway:wght@700&display=swap" rel="stylesheet">
-  
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-
-  <!-- Tus estilos -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/carrusel.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/paleta.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/carrusel.css') }}">
 </head>
-
 <body>
 
-<!-- ====== NAVBAR ====== -->
     <header class="navbar">
         <div class="logo">
-            <img src="{{ url_for('static', filename='image/logo1.png') }}" alt="Logo Programa Transitabilidad">
-            <span>Transitabilidad</span>
+            <img src="{{ url_for('static', filename='image/logo1.png') }}" alt="Logo Instituto">
         </div>
+        
         <nav class="menu">
             <ul>
-                <li><a href="{{ url_for('inicio') }}"><i class="fas fa-home"></i> Inicio</a></li>
-                <li><a href="{{ url_for('acceder') }}"><i class="fas fa-sign-in-alt"></i> Acceder</a></li>
-                <li><a href="{{ url_for('inscribete') }}"><i class="fas fa-user-plus"></i> Inscribete</a></li>
-                <li><a href="{{ url_for('masinfo') }}"><i class="fas fa-info-circle"></i> Ver más</a></li>
+                <li><a href="{{ url_for('inicio') }}" class="btn-nav btn-yellow"> <i class="fa-solid fa-house"></i> Inicio</a></li>
+                <li><a href="{{ url_for('acceder') }}" class="btn-nav"><i class="fa-solid fa-right-to-bracket"></i> Acceder</a></li>
+                <li><a href="{{ url_for('inscribete') }}" class="btn-nav btn-blue"><i class="fa-solid fa-user-plus"></i> Inscribirme</a></li>
+                <li><a href="{{ url_for('masinfo') }}" class="btn-nav"><i class="fa-solid fa-circle-info"></i> Ver más</a></li>
             </ul>
-
         </nav>
-        <!-- Botón menú móvil -->
+        <div class="user-profile">
+             <a href="#"><i class="fa-solid fa-user"></i></a>
+        </div>
         <button class="menu-toggle" id="menu-toggle">☰</button>
     </header>
 
+    <section class="hero-cards">
+        <div class="card">
+            <img src="{{ url_for('static', filename='image/pf1.png') }}" alt="Estudiantes sonriendo">
+            <div class="card-content">
+                <h2>¡INSCRÍBETE YA!</h2>
+                <p>Tu futuro espera. Sé parte del PROGRAMA DE TRANSITABILIDAD</p>
+                <a href="{{ url_for('inscribete') }}" class="btn-inscribete">INSCRÍBETE</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="{{ url_for('static', filename='image/pf1.pm2') }}" alt="Estudiante con mochila">
+             <div class="card-content">
+                <h2>¡INSCRÍBETE YA!</h2>
+                <p>Tu futuro espera. Sé parte del PROGRAMA DE TRANSITABILIDAD</p>
+                <a href="{{ url_for('inscribete') }}" class="btn-inscribete">INSCRÍBETE</a>
+            </div>
+        </div>
+        <div class="card card-dark">
+            <img src="{{ url_for('static', filename='image/pf2.png') }}" alt="Estudiantes en campus">
+             <div class="card-content">
+                <h2>¡INSCRÍBETE YA!</h2>
+                <p>Tu futuro espera.</p>
+                <a href="{{ url_for('inscribete') }}" class="btn-inscribete-yellow">INSCRÍBETE</a>
+            </div>
+        </div>
+    </section>
 
-  <!-- ====== HERO ====== -->
-  <section id="inicio" class="hero">
-    <div class="hero-text">
-      <h1 class="titulo">¡INSCRÍBETE YA!</h1>
-      <p class="texto2">Tu futuro espera. Sé parte del Programa de Transitabilidad.</p>
-      <button class="btn1">Inscribirme</button>
-    </div>
-    <div class="hero-img">
-      <img src="{{ url_for('static', filename='image/hero.png') }}" alt="Estudiantes">
-    </div>
-  </section>
+    <section class="descripcion">
+        <p>
+            El Programa de Transitabilidad abre un camino claro hacia el futuro: permite a los estudiantes vivir la experiencia universitaria desde el colegio, descubrir su verdadera vocación y desarrollar las competencias digitales que el mundo de hoy exige.
+        </p>
+    </section>
 
-  <!-- ====== DESCRIPCIÓN ====== -->
-  <section class="descripcion">
-    <p class="texto4">
-      El Programa de Transitabilidad abre un camino claro hacia el futuro: permite a los estudiantes vivir la
-      experiencia universitaria desde el colegio, descubrir su verdadera vocación y desarrollar las competencias
-      digitales que el mundo de hoy exige.
-    </p>
-  </section>
+    <section class="benefits-section">
+        <div class="benefit-image">
+            <img src="https://via.placeholder.com/300" alt="Estudiante con laptop">
+        </div>
+        <div class="benefit-content">
+            <h3>BENEFICIOS</h3>
+            <div class="badges">
+                <span class="badge">Accesibilidad</span>
+                <span class="badge">Eficiencia</span>
+                <span class="badge">Progreso</span>
+            </div>
+            <span class="badge badge-full-width">Crecimiento</span>
+        </div>
+    </section>
 
-  <!-- ====== ICONOS ====== -->
-  <section class="iconos">
-    <h2 class="texto1">BENEFICIOS</h2>
-    <div class="iconos-grid">
-      <span class="badge verde">Accesibilidad</span>
-      <span class="badge verde">Eficiencia</span>
-      <span class="badge verde">Progreso</span>
-      <span class="badge verde">Crecimiento</span>
-    </div>
-  </section>
+    <section class="goals-section">
+        <h3>NUESTRAS METAS</h3>
+        <div class="goals-container">
+            <div class="goal-card">
+                <i class="fas fa-star"></i>
+                <p>Pavimentar el camino de los jóvenes a la educación superior brindando conocimientos convalidados.</p>
+            </div>
+            <div class="goal-card">
+                <i class="fas fa-star"></i>
+                <p>Desarrollar competencias digitales aplicadas a proyectos reales.</p>
+            </div>
+            <div class="goal-card">
+                <i class="fas fa-star"></i>
+                <p>Brindar a los participantes la oportunidad de descubrir y consolidar su vocación profesional.</p>
+            </div>
+        </div>
+    </section>
 
-  <!-- ====== ESTRELLAS / RESEÑAS ====== -->
-  <section class="reseñas">
-    <h2 class="texto1">NUESTRAS METAS</h2>
-    <div class="reseñas-grid">
-      <div class="card">
-        <p>⭐ ⭐ ⭐ ⭐ ⭐</p>
-        <p>Excelente programa que impulsa a los estudiantes a cumplir sus sueños.</p>
-      </div>
-      <div class="card">
-        <p>⭐ ⭐ ⭐ ⭐ ⭐</p>
-        <p>Preparación académica sólida y experiencias únicas.</p>
-      </div>
-      <div class="card">
-        <p>⭐ ⭐ ⭐ ⭐ ⭐</p>
-        <p>Un futuro brillante para quienes se animan a participar.</p>
-      </div>
-    </div>
-  </section>
+    <section class="video-section">
+        <div class="video-container">
+            <div class="carousel">
+                <div class="carousel-inner">
+                    {% for img in imagenes %}
+                    <div class="carousel-item">
+                        <img src="{{ img }}" alt="Imagen {{ loop.index }}">
+                    </div>
+                    {% endfor %}
+                </div>
+                <button id="prev" class="carousel-btn">&#10094;</button>
+                <button id="next" class="carousel-btn">&#10095;</button>
+            </div>
+        </div>
+        <p class="video-description">
+            El video "Socialización del Programa de Transitabilidad 2025" presenta los objetivos, metas y beneficios del programa, destacando las oportunidades únicas que se ofrecen a los participantes. Busca informar y concientizar a los participantes sobre la importancia del programa, promoviendo la participación activa y el aprovechamiento de sus recursos.
+        </p>
+    </section>
 
-  <!-- ====== CARRUSEL ====== -->
-  <section class="carousel">
-    <div class="carousel-inner">
-      {% for img in imagenes %}
-      <div class="carousel-item">
-        <img src="{{ img }}" alt="Imagen {{ loop.index }}">
-      </div>
-      {% endfor %}
-    </div>
-    <button id="prev" class="carousel-btn">&#10094;</button>
-    <button id="next" class="carousel-btn">&#10095;</button>
-  </section>
+    <footer class="footer">
+        <p>&copy; 2025 Programa de Transitabilidad</p>
+    </footer>
 
-  <!-- ====== FORMULARIO ====== -->
-  <section id="contacto" class="formulario">
-    <h2 class="texto1">Contáctanos</h2>
-    <form>
-      <input type="text" placeholder="Nombre completo" required>
-      <input type="email" placeholder="Correo electrónico" required>
-      <textarea placeholder="Mensaje" rows="4" required></textarea>
-      <button type="submit" class="btn2">Enviar</button>
-    </form>
-  </section>
-
-  <!-- ====== FOOTER ====== -->
-  <footer class="footer">
-    <p>&copy; 2025 Programa de Transitabilidad</p>
-  </footer>
-
-  <!-- ====== JS ====== -->
-  <script src="{{ url_for('static', filename='js/carrusel.js') }}"></script>
-  <script>
-    // Toggle menú móvil
-    const toggle = document.getElementById('menu-toggle');
-    const nav = document.querySelector('.menu');
-    toggle.addEventListener('click', () => {
-      nav.classList.toggle('open');
-    });
-  </script>
+    <script src="{{ url_for('static', filename='js/carrusel.js') }}"></script>
+    <script>
+        // Toggle menú móvil
+        const toggle = document.getElementById('menu-toggle');
+        const nav = document.querySelector('.menu');
+        toggle.addEventListener('click', () => {
+            nav.classList.toggle('open');
+        });
+    </script>
 </body>
-
 </html>

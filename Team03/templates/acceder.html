@@ -1,45 +1,93 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acceder - Programa de Transitabilidad</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='carrusel.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='paleta.css') }}">
-</head>
 
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo_acceder.css') }}">
+</head>
 <body>
-    <!-- ====== NAVBAR ====== -->
+
     <header class="navbar">
         <div class="logo">
-            <img src="{{ url_for('static', filename='image/logo1.png') }}" alt="Logo Programa Transitabilidad">
-            <span>Transitabilidad</span>
+            <img src="{{ url_for('static', filename='image/logo1.png') }}" alt="Logo Instituto">
         </div>
+        
         <nav class="menu">
             <ul>
-                <li><a href="{{ url_for('inicio') }}">Inicio</a></li>
-                <li><a href="{{ url_for('acceder') }}" class="active">Acceder</a></li>
-                <li><a href="{{ url_for('inscribete') }}">Inscríbete</a></li>
-                <li><a href="{{ url_for('masinfo') }}">Ver más</a></li>
+                <li><a href="{{ url_for('inicio') }}" class="btn-nav"> <i class="fa-solid fa-house"></i> Inicio</a></li>
+                <li><a href="{{ url_for('acceder') }}" class="btn-nav btn-yellow"><i class="fa-solid fa-right-to-bracket"></i> Acceder</a></li>
+                <li><a href="{{ url_for('inscribete') }}" class="btn-nav"><i class="fa-solid fa-user-plus"></i> Inscribirme</a></li>
+                <li><a href="{{ url_for('masinfo') }}" class="btn-nav"><i class="fa-solid fa-circle-info"></i> Ver más</a></li>
             </ul>
         </nav>
+        <div class="user-profile">
+             <a href="#"><i class="fa-solid fa-user"></i></a>
+        </div>
         <button class="menu-toggle" id="menu-toggle">☰</button>
     </header>
 
-    <!-- ====== CONTENIDO ====== -->
-    <main>
-        <section class="contenido">
-            <h1 class="titulo">Acceder</h1>
-            <p class="texto2">Aquí irá el formulario o sección para acceder al sistema.</p>
+    <main class="container">
+
+        <h2 class="main-title">Lorem ipsum dolor sit amet</h2>
+
+        <section class="card-slider">
+            <div class="slider-container">
+                <div class="slide-card">
+                    <img src="https://via.placeholder.com/600x400" alt="Imagen descriptiva 1">
+                    <div class="card-content">
+                        <h3>¡INSCRÍBETE YA!</h3>
+                        <p>Tu futuro espera. Sé parte del PROGRAMA DE TRANSITABILIDAD</p>
+                        <a href="#" class="btn-card">INSCRÍBETE</a>
+                    </div>
+                </div>
+                <div class="slide-card">
+                    <img src="https://via.placeholder.com/600x400" alt="Imagen descriptiva 2">
+                    <div class="card-content">
+                        <h3>¡INSCRÍBETE YA!</h3>
+                        <p>Tu futuro espera. Sé parte del PROGRAMA DE TRANSITABILIDAD</p>
+                        <a href="#" class="btn-card">INSCRÍBETE</a>
+                    </div>
+                </div>
+                <div class="slide-card">
+                    <img src="https://via.placeholder.com/600x400" alt="Imagen descriptiva 3">
+                     <div class="card-content">
+                        <h3>¡INSCRÍBETE YA!</h3>
+                        <p>Tu futuro espera</p>
+                        <a href="#" class="btn-card">INSCRÍBETE</a>
+                    </div>
+                </div>
+            </div>
         </section>
+
+        <section class="cta-section">
+            <a href="#" class="btn-green-pill">Lorem ipsum dolor sit amet</a>
+            <img src="https://via.placeholder.com/150x225" alt="Personaje del programa" class="character-image">
+        </section>
+
     </main>
 
-    <!-- ====== FOOTER ====== -->
     <footer class="footer">
-        <p>&copy; 2025 Programa de Transitabilidad</p>
+        <div class="footer-links">
+            <p>Lorem ipsum dolor sit amet</p>
+            <p>Lorem ipsum dolor sit amet</p>
+            <p>Lorem ipsum dolor sit amet</p>
+        </div>
     </footer>
-</body>
 
+    <script>
+        const toggle = document.getElementById('menu-toggle');
+        const nav = document.querySelector('.menu');
+        
+        toggle.addEventListener('click', () => {
+            nav.classList.toggle('open');
+        });
+    </script>
+
+</body>
 </html>

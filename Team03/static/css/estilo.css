@@ -1,69 +1,280 @@
+/* ====== CONFIGURACIÓN GENERAL ====== */
 body {
-  font-family: 'Nunito', sans-serif;
-  background-color: #FFFFFF;
-  margin: 0;
-  padding: 0;
-  color: #0a0a0a;
+    font-family: 'Nunito', sans-serif;
+    background-color: #FFFFFF;
+    margin: 0;
+    padding: 0;
+    color: #333;
 }
 
+/* Contenedor principal para centrar contenido */
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-.logo {
-  display: block;
-  margin: 30px auto;
-  width: 250px; /* Ajusta según necesites */
+/* ====== NAVBAR ====== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1E3A8A;
+    padding: 10px 40px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-.titulo {
-  font-family: 'Raleway', sans-serif;
-  font-size: 60px;
-  color: #1E3A8A;
-  text-align: center;
+.navbar .logo img {
+    height: 200px;
 }
 
-.texto1 {
-  font-family: 'Nunito', sans-serif;
-  font-size: 48px;
-  text-align: center;
+.menu ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+    align-items: center;
 }
 
-.texto2 {
-  font-size: 28px;
-  font-weight: bold;
-  margin-top: 30px;
+.btn-nav {
+    text-decoration: none;
+    color: #555;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.texto3 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 12px;
+.btn-nav:hover {
+    background-color: #f0f0f0;
 }
 
-.texto4 {
-  font-size: 16px;
+.btn-nav.btn-yellow {
+    background-color: #FACC15; /* Amarillo */
+    color: #1E3A8A; /* Azul oscuro */
 }
 
-.btn {
-  padding: 12px 30px;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  margin: 10px 5px;
+.btn-nav.btn-blue {
+    background-color: #1E3A8A; /* Azul oscuro */
+    color: #fff;
 }
 
-.btn1 {
-  background-color: #10B981;
-  color: white;
-  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.4);
+.user-profile a {
+    font-size: 24px;
+    color: #1E3A8A;
 }
 
-.btn2 {
-  background-color: #FACC15;
-  color: #0a0a0a;
-  box-shadow: 0 4px 10px rgba(250, 204, 21, 0.4);
+.menu-toggle { display: none; } /* Para móvil */
+
+
+/* ====== HERO CARDS SECTION ====== */
+.hero-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 40px;
+    background-color: #f7f9fc;
+}
+
+.hero-cards .card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.hero-cards .card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.hero-cards .card-content {
+    padding: 20px;
+}
+
+.hero-cards .card-content h2 {
+    font-family: 'Raleway', sans-serif;
+    color: #1E3A8A;
+    font-size: 24px;
+    margin-top: 0;
+}
+
+.hero-cards .card-content p {
+    font-size: 16px;
+    color: #666;
+}
+
+.btn-inscribete, .btn-inscribete-yellow {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.btn-inscribete {
+    background-color: #1E3A8A;
+    color: white;
+}
+
+.card-dark {
+    background-color: #1E3A8A;
+}
+
+.card-dark h2, .card-dark p {
+    color: white;
+}
+
+.btn-inscribete-yellow {
+    background-color: #FACC15;
+    color: #1E3A8A;
+}
+
+
+/* ====== DESCRIPCIÓN SECTION ====== */
+.descripcion {
+    text-align: center;
+    padding: 50px 20%;
+    font-size: 18px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* ====== BENEFITS SECTION ====== */
+.benefits-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    padding: 40px;
+    background-color: #fff;
+}
+
+.benefit-image img {
+    max-width: 250px;
+    border-radius: 50%;
+}
+
+.benefit-content h3 {
+    font-size: 32px;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.badges {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.badge {
+    background-color: #10B981; /* Verde */
+    color: white;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 16px;
+}
+.badge.badge-full-width {
+    display: inline-block;
+}
+
+/* ====== GOALS SECTION ====== */
+.goals-section {
+    padding: 60px 40px;
+    text-align: center;
+    background-color: #f7f9fc;
+}
+
+.goals-section h3 {
+    font-size: 32px;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.goals-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.goal-card {
+    background-color: #f0f0f0;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.goal-card .fa-star {
+    font-size: 40px;
+    color: #FACC15; /* Amarillo */
+    margin-bottom: 20px;
+}
+
+.goal-card p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+}
+
+/* ====== VIDEO/CAROUSEL SECTION ====== */
+.video-section {
+    padding: 60px 40px;
+    text-align: center;
+}
+
+.video-description {
+    max-width: 800px;
+    margin: 20px auto 0 auto;
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* ====== FOOTER ====== */
+.footer {
+    background-color: #1E3A8A; /* Azul oscuro */
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+/* ====== RESPONSIVE DESIGN ====== */
+@media (max-width: 992px) {
+    .hero-cards, .goals-container {
+        grid-template-columns: 1fr 1fr;
+    }
+    .benefits-section {
+        flex-direction: column;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 10px 20px;
+    }
+    .menu { display: none; }
+    .menu-toggle { display: block; }
+    .hero-cards, .goals-container {
+        grid-template-columns: 1fr;
+    }
+     .descripcion {
+        padding: 40px 10%;
+    }
 }

@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programa de Transitabilidad</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@400;600&family=Raleway:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/carrusel.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
+
+</head>
+
+<body>
+
+    <button id="openChat"
+        class="fixed bottom-6 right-6 bg-blue-900 hover:bg-blue-800 text-white p-4 rounded-full shadow-lg transition-transform transform hover:scale-110 z-50">
+        <i class="fa-solid fa-comment-dots text-2xl"></i>
+    </button>
+
+    <div id="chatWindow"
+        class="hidden fixed bottom-20 right-6 w-80 md:w-96 bg-white rounded-2xl shadow-xl border border-gray-300 z-50 flex-col overflow-hidden">
+
+        <div class="bg-blue-900 text-white flex items-center justify-between p-3">
+            <h3 class="font-semibold text-lg">Asistente Virtual</h3>
+            <button id="closeChat" class="text-white hover:text-gray-300">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+        </div>
+
+        <div id="chatBody" class="flex-1 p-4 overflow-y-auto space-y-3 bg-gray-50">
+            <div class="text-sm text-gray-600 text-center">
+                <p>¡Hola! 👋 Soy tu asistente virtual, ¿en qué puedo ayudarte?</p>
+            </div>
+        </div>
+
+        <div class="flex border-t border-gray-200">
+            <input id="userInput" type="text" placeholder="Escribe un mensaje..."
+                class="flex-1 p-3 text-sm outline-none border-none focus:ring-0">
+            <button id="sendBtn" class="bg-blue-900 hover:bg-blue-800 text-white px-4">
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const openChat = document.getElementById('openChat');
+        const closeChat = document.getElementById('closeChat');
+        const chatWindow = document.getElementById('chatWindow');
+        const chatBody = document.getElementById('chatBody');
+        const userInput = document.getElementById('userInput');
+        const sendBtn = document.getElementById('sendBtn');
+
+        // Mostrar y ocultar chat
+        openChat.addEventListener('click', () => {
+            chatWindow.classList.remove('hidden');
+            chatWindow.classList.add('flex');
+            openChat.classList.add('hidden');
+        });
+
+        closeChat.addEventListener('click', () => {
+            chatWindow.classList.add('hidden');
+            openChat.classList.remove('hidden');
+        });
+
+        // Enviar mensaje
+        sendBtn.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        function sendMessage() {
+            const msg = userInput.value.trim();
+            if (msg === '') return;
+
+            // Mostrar mensaje del usuario
+            const userMsg = document.createElement('div');
+            userMsg.className = 'bg-blue-100 text-blue-900 p-2 rounded-xl self-end text-sm max-w-[80%] ml-auto';
+            userMsg.textContent = msg;
+            chatBody.appendChild(userMsg);
+
+            userInput.value = '';
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            // Simular respuesta del bot
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'bg-gray-200 text-gray-800 p-2 rounded-xl text-sm max-w-[80%] mr-auto';
+                botMsg.textContent = `Recibí tu mensaje: "${msg}". ¿Podrías darme más contexto?`;
+                chatBody.appendChild(botMsg);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 800);
+        }
+    </script>
+
+    <!-- HEADER Y NAVBAR FUNCIONAL RESPONSIVE -->
+    <header class="navbar">
+        <a href="{{ url_for('inicio') }}" class="logo">
+            <img src="{{ url_for('static', filename='image/logo_web.png') }}" alt="Logo Programa">
+        </a>
+
+        <div class="nav-container">
+
+            <nav class="menu" id="nav-menu">
+                <ul>
+                    <li><a href="{{ url_for('inicio') }}">¿Quiénes Somos?</a></li>
+                    <li><a href="{{ url_for('inscribete') }}" class="active">INSCRÍBETE</a></li>
+                    <li><a href="{{ url_for('contactanos') }}">Contáctanos</a></li>
+                </ul>
+            </nav>
+
+            <!-- 
+          🔹 ¡AQUÍ ESTÁ LA LÓGICA! 🔹
+          Comprueba si el usuario ha iniciado sesión.
+        -->
+            {% if session['user_id'] %}
+            <!-- SI EL USUARIO SÍ ESTÁ LOGUEADO -->
+            <!-- Enlaza a 'logout' y muestra un ícono de "salir" -->
+            <a href="{{ url_for('logout') }}" class="user-profile" title="Cerrar Sesión">
+                <i class="fa-solid fa-sign-out-alt"></i>
+            </a>
+            {% else %}
+            <!-- SI EL USUARIO NO ESTÁ LOGUEADO -->
+            <!-- Enlaza a 'login' y muestra el ícono de "usuario" -->
+            <a href="{{ url_for('login') }}" class="user-profile" title="Iniciar Sesión">
+                <i class="fa-solid fa-user"></i>
+            </a>
+            {% endif %}
+            <!-- 🔹 FIN DE LA LÓGICA 🔹 -->
+
+            <button class="menu-toggle" id="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- CARRUSEL CON BANNERS PERSUASIVOS -->
+    <section class="carousel">
+
+        <div class="carousel-inner">
+            {% for img in imagenes %}
+            <div class="carousel-item">
+                <img src="{{ img }}" alt="Imagen {{ loop.index }}">
+            </div>
+            {% endfor %}
+        </div>
+
+        <button id="prev" class="carousel-btn">&#10094;</button>
+        <button id="next" class="carousel-btn">&#10095;</button>
+
+    </section>
+
+    <!-- ESLOGAN DEL PROGRAMA -->
+
+    <section class="container mx-auto px-6 py-20 overflow-hidden">
+        <div class="flex flex-col md:flex-row items-center gap-12">
+
+            <div class="md:w-1/2 relative z-10">
+
+                <h2 class="raleway3 text-4xl md:text-5xl text-center" style="line-height: 1.2; margin-bottom: 24px;">
+                    <span class="nunito2" style="font-weight: 600; color: var(--color-texto);">Descubre tu</span>
+                    <strong
+                        style="color: var(--color-primario); display: block; -webkit-text-stroke: 1px #112355; text-shadow: 0px 2px 4px rgba(0,0,0,0.1);">VOCACIÓN</strong>
+                    <span class="nunito2" style="font-weight: 600; color: var(--color-texto);">impulsa tu</span>
+                    <strong
+                        style="color: var(--color-secundario); display: block; -webkit-text-stroke: 1px #a16207; text-shadow: 0px 2px 4px rgba(0,0,0,0.1);">FUTURO</strong>
+                </h2>
+
+                <!-- BREVE CONCEPTO -->
+
+                <h3 class="nunito2 text-2xl md:text-3xl font-semibold text-center mb-4"
+                    style="color: var(--color-texto);">
+                    Tu aventura tecnológica empieza ahora
+                </h3>
+
+                <p class="nunito1 text-lg p-6 rounded-md shadow-sm bg-yellow-50 mb-6"
+                    style="color: #3a3a3a; line-height: 1.6; border-left: 5px solid var(--color-secundario);">
+                    Te acerca al fascinante mundo de la programación y desarrollo de apps, fomentando el trabajo en
+                    equipo y el crecimiento humano.
+                    Promovemos en los estudiantes la innovación y capacidad de crear soluciones disruptivas, asegurando
+                    a los padres y profesores una formación práctica que abre puertas a carreras profesionales con alta
+                    demanda e innovación.
+                </p>
+
+                <h4 class="raleway3 text-3xl md:text-4xl text-center font-bold"
+                    style="color: var(--color-primario); -webkit-text-stroke: 1px #112355; text-shadow: 0px 2px 4px rgba(0,0,0,0.1);">
+                    ¡Es el momento de programar su futuro!
+                </h4>
+            </div>
+
+            <!-- IMAGEN DE PERSONAJES CREADOS PARA EL PROGRAMA -->
+
+            <div
+                class="md:w-1/2 flex items-center justify-center md:scale-115 lg:scale-130 md:translate-x-10 lg:translate-x-10">
+
+                <img src="{{ url_for('static', filename='image/personajes.png') }}" alt="Personaje del programa"
+                    class="w-full max-w-md h-auto">
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE BENEFICIOS GENERALES DEL PROGRAMA -->
+    <section id="Beneficios" class="py-20" style="background-color: #10B98140; /* Tono verde claro del mockup */">
+        <div class="container mx-auto px-6 text-center">
+
+            <h3 class="poppins3 text-4xl font-bold mb-16" style="color: var(--color-texto);">
+                Crea la tecnología que moverá al mundo
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+                <div>
+                    <img src="{{ url_for('static', filename='image/subir.png') }}" alt="Crecimiento"
+                        class="h-32 mx-auto mb-4 transition-transform hover:scale-110">
+                    <h4 class="poppins2 text-2xl font-semibold" style="color: var(--color-texto);">
+                        Crecimiento
+                    </h4>
+                </div>
+
+                <div>
+                    <img src="{{ url_for('static', filename='image/persona.png') }}" alt="Eficiencia"
+                        class="h-32 mx-auto mb-4 transition-transform hover:scale-110">
+                    <h4 class="poppins2 text-2xl font-semibold" style="color: var(--color-texto);">
+                        Eficiencia
+                    </h4>
+                </div>
+
+                <div>
+                    <img src="{{ url_for('static', filename='image/manos.png') }}" alt="Accesibilidad"
+                        class="h-32 mx-auto mb-4 transition-transform hover:scale-110">
+                    <h4 class="poppins2 text-2xl font-semibold" style="color: var(--color-texto);">
+                        Accesibilidad
+                    </h4>
+                </div>
+
+                <div>
+                    <img src="{{ url_for('static', filename='image/graduacion.png') }}" alt="Progreso"
+                        class="h-32 mx-auto mb-4 transition-transform hover:scale-110">
+                    <h4 class="poppins2 text-2xl font-semibold" style="color: var(--color-texto);">
+                        Progreso
+                    </h4>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5" style="background-color: #fefafa;">
+        <div class="container mx-auto px-2 text-center">
+        </div>
+    </section>
+
+    <!-- OBJETIVO -->
+    <section id="Objetivo" class="py-15" style="background-color: #FACC1540;">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-10 overflow-hidden">
+
+                <div class="md:w-1/3 animate-on-scroll anim-slide-left">
+                    <img src="{{ url_for('static', filename='image/per_m2.png') }}" alt="Estudiante con tablet"
+                        class="w-full max-w-xs mx-auto h-auto">
+                </div>
+
+                <div class="md:w-2/3 text-left animate-on-scroll anim-slide-right" style="--animation-delay: 200ms;">
+
+                    <h3 class="nunito1 text-2xl md:text-3xl font-bold leading-tight mb-4"
+                        style="color: var(--color-primario, '#1E3A8A');">
+                        ¡Aseguren hoy el primer gran paso hacia un futuro profesional imparable!
+                    </h3>
+
+                    <p class="nunito1 text-xl md:text-2xl leading-relaxed mb-4" style="color: #333;">
+                        Ofrecemos a estudiantes de secundaria un camino directo a la educación superior:
+                    </p>
+
+                    <ul class="list-disc list-inside nunito1 text-xl md:text-2xl leading-relaxed space-y-2"
+                        style="color: #333;">
+                        <li>Dominando las competencias digitales que son esenciales para cualquier carrera del futuro.
+                        </li>
+                        <li>Descubriendo su vocación con formación práctica que abre puertas, especialmente en campos de
+                            alta demanda como el <strong>"Análisis de Sistemas Empresariales en Valle Grande"</strong>.
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5" style="background-color: #fefafa;">
+        <div class="container mx-auto px-2 text-center">
+        </div>
+    </section>
+
+    <!-- METAS -->
+    <section id="Metas" class="py-20" style="background-color: #1E3A8A40;">
+        <div class="container mx-auto px-6 text-center">
+
+            <h3 class="poppins3 text-4xl font-bold mb-16 text-gray-700">
+                Actividades Formativas
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <div
+                    class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center animate-on-scroll anim-flip">
+                    <i class="fa-solid fa-star text-4xl mb-4" style="color: var(--color-secundario);"></i>
+                    <p class="nunito1 text-lg leading-relaxed" style="color: #555;">
+                        <strong>Sesiones Plenarias</strong>
+                    </p>
+                    <p class="nunito1 text-lg leading-relaxed" style="color: #555;">
+                        Clases teóricas y prácticas en el centro de cómputo y auditorio de Valle Grande.
+                        Charlas y tertulias con profesionales del medio tecnológico.
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center animate-on-scroll anim-flip"
+                    style="--animation-delay: 200ms;">
+                    <i class="fa-solid fa-star text-4xl mb-4" style="color: var(--color-secundario);"></i>
+                    <p class="nunito1 text-lg leading-relaxed" style="color: #555;">
+                        <strong>Desarrollo de Proyectos</strong>
+                    </p>
+                    <p class="nunito1 text-lg leading-relaxed" style="color: #555;">
+                        Con la mentoría de los profesores de Valle Grande desarrollan proyectos
+                        de automatización utilizando la tecnologías de Google WorkSpace.
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center animate-on-scroll anim-flip"
+                    style="--animation-delay: 400ms;">
+                    <i class="fa-solid fa-star text-4xl mb-4" style="color: var(--color-secundario);"></i>
+                    <p class="nunito1 text-lg leading-relaxed" style="color: #555;">
+                        <strong>Viajes de Estudio</strong>
+                    </p>
+                    <p class="nunito1 text-lg leading-relaxed" style="color: #555;">
+                        Visitas a empresas de tecnología para conocer de cerca cómo las soluciones
+                        tecnológicas aportan valor a los profesionales y a las empresas.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5" style="background-color: #fefafa;">
+        <div class="container mx-auto px-2 text-center">
+        </div>
+    </section>
+
+    <!-- CONVENIOS -->
+
+    <section id="Convenios" class="py-20" style="background-color: #FACC1540;">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="poppins3 text-4xl font-bold mb-16" style="color: var(--color-texto);">
+                NUESTROS CONVENIOS
+            </h3>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center justify-center">
+
+                <a href="{{ url_for('convenios', _anchor='convenio-saco') }}"
+                    class="block transition-transform duration-300 hover:scale-110">
+                    <img src="{{ url_for('static', filename='image/saco_mejia.png') }}" alt="Convenio Gerardo Barco"
+                        class="w-full h-auto mx-auto max-w-[150px]">
+                </a>
+
+                <a href="{{ url_for('convenios', _anchor='convenio-srita') }}"
+                    class="block transition-transform duration-300 hover:scale-110">
+                    <img src="{{ url_for('static', filename='image/santa_rita.png') }}" alt="Convenio Santa Rita"
+                        class="w-full h-auto mx-auto max-w-[150px]">
+                </a>
+
+                <a href="{{ url_for('convenios', _anchor='convenio-sepulveda') }}"
+                    class="block transition-transform duration-300 hover:scale-110">
+                    <img src="{{ url_for('static', filename='image/sepulveda.png') }}" alt="Convenio Cañete JBS"
+                        class="w-full h-auto mx-auto max-w-[150px]">
+                </a>
+
+                <a href="{{ url_for('convenios', _anchor='convenio-centro') }}"
+                    class="block transition-transform duration-300 hover:scale-110">
+                    <img src="{{ url_for('static', filename='image/centro_de_mujeres.png') }}" alt="Convenio 20188"
+                        class="w-full h-auto mx-auto max-w-[150px]">
+                </a>
+
+                <a href="{{ url_for('convenios', _anchor='convenio-mariategui') }}"
+                    class="block transition-transform duration-300 hover:scale-110">
+                    <img src="{{ url_for('static', filename='image/mariategui.png') }}" alt="Convenio J de la Puerta"
+                        class-="w-full h-auto mx-auto max-w-[150px]">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+
+    <section id="Testimonios" class="py-20" style="background-color: #fefafa;">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="poppins3 text-4xl font-bold mb-16" style="color: var(--color-texto);">
+                TESTIMONIOS
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <div class="testimonial-card bg-card-purple p-6 md:p-8">
+                    <img src="{{ url_for('static', filename='image/testimonio_1.png') }}" alt="Melany & Selene Medina"
+                        class="w-32 h-32 lg:w-40 lg:h-40 rounded-full object-cover mx-auto mb-4 border-4 border-white shadow-lg">
+                    <h4 class="poppins2 text-xl font-semibold mb-1" style="color: var(--color-texto);">Melany & Selene
+                        Medina Venturo</h4>
+                    <p class="nunito2 text-sm font-medium text-gray-700 mb-3">Estudiantes del Programa de
+                        Transitabilidad
+                    </p>
+                    <hr class="border-t-2 w-1/2 mx-auto" style="border-color: #CFC5E0;">
+
+                    <p class="nunito1 text-sm text-gray-800 text-center mt-4">
+                        En estos dos años hemos estado en el Programa de Transitabilidad hemos aprendido a utilizar la
+                        plataforma de Classroom y las herramientas de Google Workspace. En esta experiencia de
+                        aprendizaje
+                        100% digital, no hemos necesitado cuadernos, ni libros físicos para aprender las ventajas de la
+                        tecnología de Google, construir páginas web y desarrollar proyectos de automatización.
+                    </p>
+                </div>
+
+                <div class="testimonial-card bg-card-yellow p-6 md:p-8 delay-1s">
+                    <img src="{{ url_for('static', filename='image/testimonio_2.png') }}" alt="Leandro Cahuana"
+                        class="w-32 h-32 lg:w-40 lg:h-40 rounded-full object-cover mx-auto mb-4 border-4 border-white shadow-lg">
+                    <h4 class="poppins2 text-xl font-semibold mb-1" style="color: var(--color-texto);">Leandro Cahuana
+                        Florian</h4>
+                    <p class="nunito2 text-sm font-medium text-gray-700 mb-3">Egresado del Programa de Transitabilidad
+                        en
+                        2023</p>
+                    <hr class="border-t-2 w-1/2 mx-auto" style="border-color: #F0E68C;">
+                    <p class="nunito1 text-sm text-gray-800 text-center mt-4">
+                        Egresé del Programa de Transitabilidad en 2023 y ahora curso el segundo año de la carrera de
+                        Análisis de Sistemas. Gracias al programa, mi integración en la carrera fue fácil porque aprendí
+                        con
+                        anticipación la importancia del trabajo en equipo y lo que significa construir un programa de
+                        software desde cero para la solución de problemas reales.
+                    </p>
+                </div>
+
+                <div class="testimonial-card bg-card-green p-6 md:p-8 delay-2s">
+                    <img src="{{ url_for('static', filename='image/testimonio_3.png') }}" alt="José Cama"
+                        class="w-32 h-32 lg:w-40 lg:h-40 rounded-full object-cover mx-auto mb-4 border-4 border-white shadow-lg">
+                    <h4 class="poppins2 text-xl font-semibold mb-1" style="color: var(--color-texto);">José Cama La
+                        Madrid
+                    </h4>
+                    <p class="nunito2 text-sm font-medium text-gray-700 mb-3">Titulado: Analista de Sistemas<br>Egresado
+                        del
+                        Programa de Transitabilidad en 2021</p>
+                    <hr class="border-t-2 w-1/2 mx-auto" style="border-color: #A3D9C9;">
+                    <p class="nunito1 text-sm text-gray-800 text-center mt-4">
+                        Finalicé el Programa de Transitabilidad en 2021 y acabo de titularme como Analista de Sistemas.
+                        Quisiera agradecer a Valle Grande y a la institución Educativa Gerardo Salomón Mejía Saco por
+                        darme
+                        la oportunidad de descubrir y conocer mi verdadera vocación.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Transitabilidad -->
+
+    <section class="py-20" style="background-color: #fefafa;">
+        <div class="container mx-auto px-6 text-center">
+
+            <h3 class="poppins3 text-4xl font-bold mb-12" style="color: var(--color-texto);">
+                Conoce Más del Programa
+            </h3>
+
+            <a href="https://youtu.be/IqfsrpxyTJ0?si=KbiHKD01JzcILTgY" target="_blank" rel="noopener noreferrer"
+                class="block w-full max-w-4xl mx-auto rounded-lg shadow-xl overflow-hidden transition-transform duration-300 hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-yellow-400">
+
+                <img src="{{ url_for('static', filename='image/Poster_1.png') }}"
+                    alt="Video Informativo del Programa de Transitabilidad" class="w-full h-auto">
+            </a>
+
+            <p class="nunito1 text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mt-8 leading-relaxed">
+                Codifica, crea, conecta. Programación, trabajo en equipo y desarrollo humano para tu futuro.
+            </p>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer class="bg-blue-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-6">
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+
+                <div class="md:text-center"> <a href="{{ url_for('inicio') }}"
+                        class="flex items-center justify-center md:justify-center gap-3 mb-4">
+                        <img src="{{ url_for('static', filename='image/logo_piepag.png') }}" alt="Logo Programa"
+                            class="h-20 w-auto">
+                    </a>
+                    <p class="nunito1 text-sm text-gray-300 leading-relaxed text-center">
+                        Conectando tu colegio con tu futuro profesional.
+                    </p>
+                </div>
+
+                <div>
+                    <h5 class="poppins3 text-xl font-bold mb-4">Navegación</h5>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="{{ url_for('inicio') }}"
+                                class="nunito2 hover:text-yellow-400 transition-colors duration-200">
+                                ¿Quiénes Somos?
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('inscribete') }}"
+                                class="nunito2 hover:text-yellow-400 transition-colors duration-200">
+                                Inscríbete
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#Convenios" class="nunito2 hover:text-yellow-400 transition-colors duration-200">
+                                Convenios
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#Beneficios" class="nunito2 hover:text-yellow-400 transition-colors duration-200">
+                                Beneficios
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#Metas" class="nunito2 hover:text-yellow-400 transition-colors duration-200">
+                                Actividades
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#Testimonios" class="nunito2 hover:text-yellow-400 transition-colors duration-200">
+                                Testimonios
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="poppins3 text-xl font-bold mb-4">Contacto</h5>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center gap-3 nunito2">
+                            <i class="fa-solid fa-envelope fa-lg w-6 text-center"></i>
+                            <span>info@transitabilidad.pe</span>
+                        </li>
+                        <li class="flex items-center gap-3 nunito2">
+                            <i class="fa-solid fa-globe fa-lg w-6 text-center"></i>
+                            <span>vallegrande.edu.pe</span>
+                        </li>
+                    </ul>
+
+                    <h5 class="poppins3 text-xl font-bold mb-4">Síguenos</h5>
+                    <div class="flex gap-4">
+                        <a href="https://www.facebook.com/ValleGrandeOficial" target="_blank" rel="noopener noreferrer"
+                            class="text-3xl text-gray-300 hover:text-yellow-400 transition-colors duration-200">
+                            <i class="fa-brands fa-facebook-square"></i>
+                        </a>
+                        <a href="https://www.instagram.com/vallegrandeoficial/" target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-3xl text-gray-300 hover:text-yellow-400 transition-colors duration-200">
+                            <i class="fa-brands fa-instagram-square"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@vallegrande" target="_blank" rel="noopener noreferrer"
+                            class="text-3xl text-gray-300 hover:text-yellow-400 transition-colors duration-200">
+                            <i class="fa-brands fa-youtube-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="border-t border-blue-700 my-8">
+
+            <div class="text-center text-gray-400 nunito1 text-sm">
+                &copy; 2025 Programa de Transitabilidad. Todos los derechos reservados.
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/carrusel.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/header.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/inicio.js') }}"></script>
+
+</body>
+
+</html>

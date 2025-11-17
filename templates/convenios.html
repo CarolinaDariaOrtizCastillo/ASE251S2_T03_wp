@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programa de Transitabilidad</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@400;600&family=Raleway:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
+</head>
+
+<body>
+
+    <!-- HEADER Y NAVBAR FUNCIONAL RESPONSIVE -->
+
+    <header class="navbar" style="background-color: #1E3A8A;">
+        <a href="{{ url_for('inicio') }}" class="logo">
+            <img src="{{ url_for('static', filename='image/logo_web.png') }}" alt="Logo Programa">
+        </a>
+
+        <div class="nav-container" style="background-color: #1E3A8A;">
+
+            <nav class="menu" id="nav-menu">
+                <ul>
+                    <li><a href="{{ url_for('inicio') }}">¿Quiénes Somos?</a></li>
+                    <li><a href="{{ url_for('inscribete') }}" class="active">INSCRÍBETE</a></li>
+                    <li><a href="{{ url_for('contactanos') }}">Contáctanos</a></li>
+                </ul>
+            </nav>
+
+            <!-- 
+          🔹 ¡AQUÍ ESTÁ LA LÓGICA! 🔹
+          Comprueba si el usuario ha iniciado sesión.
+        -->
+            {% if session['user_id'] %}
+            <!-- SI EL USUARIO SÍ ESTÁ LOGUEADO -->
+            <!-- Enlaza a 'logout' y muestra un ícono de "salir" -->
+            <a href="{{ url_for('logout') }}" class="user-profile" title="Cerrar Sesión">
+                <i class="fa-solid fa-sign-out-alt"></i>
+            </a>
+            {% else %}
+            <!-- SI EL USUARIO NO ESTÁ LOGUEADO -->
+            <!-- Enlaza a 'login' y muestra el ícono de "usuario" -->
+            <a href="{{ url_for('login') }}" class="user-profile" title="Iniciar Sesión">
+                <i class="fa-solid fa-user"></i>
+            </a>
+            {% endif %}
+            <!-- 🔹 FIN DE LA LÓGICA 🔹 -->
+
+            <button class="menu-toggle" id="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Objetivo general -->
+
+        <section id="Objetivo" class="py-20 bg-yellow-100">
+            <div class="container mx-auto px-6 max-w-5xl">
+                <div class="flex flex-col md:flex-row items-center justify-center gap-10">
+
+                    <div class="md:w-1/3">
+                        <img src="{{ url_for('static', filename='image/per_3.png') }}" alt="Personajes del Programa"
+                            class="w-full max-w-sm mx-auto">
+                    </div>
+
+                    <div class="md:w-2/3 text-left">
+                        <h2 class="text-3xl md:text-4xl font-bold text-primario text-center mb-4">Ayudándote a descubrir
+                            tu futuro</h2>
+                        <p class="text-lg text-gray-900 text-center leading-relaxed mb-4">
+                            El Programa de Transitabilidad te guía a encontrar tu verdadera vocación mientras aprendes
+                            tecnología real desde el colegio.
+                        </p>
+                        <h2 class="text-2xl md:text-3xl font-semibold text-blue-900 text-center mb-3">¡Adelanta tu
+                            futuro hoy y empieza a construir lo que quieres ser!</h2>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5" style="background-color: #fefafa;">
+            <div class="container mx-auto px-2 text-center">
+            </div>
+        </section>
+
+        <!-- CONVENIOS / info -->
+
+        <section id="convenios" class="py-20" style="background-color: #A9BCE2;">
+            <div class="container mx-auto px-6">
+
+                <h2 class="text-4xl md:text-5xl font-bold text-center text-white mb-12"
+                    style="text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                    CONVENIOS
+                </h2>
+
+                <div id="convenio-sepulveda"
+                    class="bg-yellow-50 rounded-2xl shadow-lg p-8 md:p-12 max-w-5xl mx-auto mb-12">
+
+                    <h3 class="text-2xl md:text-3xl font-bold text-center text-primario mb-10">
+                        Convenio Valle Grande – I.E. José Buenaventura Sepúlveda
+                    </h3>
+
+                    <div class="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12">
+
+                        <div class="md:w-2/3 text-left">
+                            <h4 class="text-2xl font-bold text-gray-800 mb-3">Alianza Educativa</h4>
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                                Brindar a los estudiantes de tercero, cuarto y quinto de secundaria la oportunidad de
+                                iniciar su formación técnica en el Instituto Valle Grande, desarrollando competencias
+                                digitales, pensamiento lógico y habilidades tecnológicas desde el colegio.
+                            </p>
+                        </div>
+
+                        <div class="md:w-1/3 flex-shrink-0">
+                            <img src="{{ url_for('static', filename='image/sepulveda.png') }}"
+                                alt="Logo [Nombre del Colegio]"
+                                class="w-48 h-48 md:w-56 md:h-56 object-contain mx-auto">
+                        </div>
+                    </div>
+
+                    <hr class="border-t-2 border-yellow-100 my-8">
+
+                    <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+
+                        <div class="flex-shrink-0">
+                            <img src="{{ url_for('static', filename='image/directora_sepulveda.png') }}"
+                                alt="Foto del Director"
+                                class="w-32 h-32 object-cover rounded-full shadow-lg border-4 border-white">
+                        </div>
+
+                        <div class="flex-1 text-center md:text-left">
+                            <p class="text-lg italic text-gray-700 mb-4 leading-relaxed">
+                                “Este programa complementa la formación de nuestros estudiantes y les brinda la
+                                oportunidad de construir su futuro profesional desde la escuela.”
+                            </p>
+                            <footer class="text-right md:text-left bg-yellow-50">
+                                <p class="font-bold text-gray-900">Prof. Blanca R. Vicente Cuzcano</p>
+                                <p class="text-sm text-gray-600">Directora de la I.E. José Buenaventura Sepúlveda</p>
+                            </footer>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="convenio-saco" class="bg-green-50 rounded-2xl shadow-lg p-8 md:p-12 max-w-5xl mx-auto mb-12">
+
+                    <h3 class="text-2xl md:text-3xl font-bold text-center text-primario mb-10">
+                        Convenio Valle Grande – I.E. Gerardo Salomón Mejía Saco
+                    </h3>
+
+                    <div class="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12">
+
+                        <div class="md:w-2/3 text-left">
+                            <h4 class="text-2xl font-bold text-gray-800 mb-3">Alianza Educativa</h4>
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                                Ofrecer a los estudiantes de tercero, cuarto y quinto de secundaria la oportunidad de
+                                continuar su formación técnica profesional mientras aún cursan la educación básica,
+                                gracias al Programa de Transitabilidad del Instituto Valle Grande.
+                            </p>
+                        </div>
+
+                        <div class="md:w-1/3 flex-shrink-0">
+                            <img src="{{ url_for('static', filename='image/saco_mejia.png') }}"
+                                alt="Logo [Nombre del Colegio]"
+                                class="w-48 h-48 md:w-56 md:h-56 object-contain mx-auto">
+                        </div>
+                    </div>
+
+                    <hr class="border-t-2 border-green-200 my-8">
+
+                    <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+
+                        <div class="flex-shrink-0">
+                            <img src="{{ url_for('static', filename='image/director_saco.png') }}"
+                                alt="Foto del Director"
+                                class="w-32 h-32 object-cover rounded-full shadow-lg border-4 border-white">
+                        </div>
+
+                        <div class="flex-1 text-center md:text-left">
+                            <p class="text-lg italic text-gray-700 mb-4 leading-relaxed">
+                                “Este convenio con el Instituto Valle Grande nos permite mejorar la educación de
+                                nuestros jóvenes, fortalecer sus capacidades tecnológicas y brindarles la oportunidad de
+                                adelantar su futuro profesional.”
+                            </p>
+                            <footer class="text-right md:text-left bg-green-50">
+                                <p class="font-bold text-gray-900">Prof. Luis Alberto C. Alpalau</p>
+                                <p class="text-sm text-gray-600">Director de la I.E. Gerardo Salomón Mejía Saco (Cerro
+                                    Azul)</p>
+                            </footer>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="convenio-srita" class="bg-yellow-50 rounded-2xl shadow-lg p-8 md:p-12 max-w-5xl mx-auto mb-12">
+
+                    <h3 class="text-2xl md:text-3xl font-bold text-center text-primario mb-10">
+                        Convenio Valle Grande – I.E. Santa Rita de Casia
+                    </h3>
+
+                    <div class="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12">
+
+                        <div class="md:w-2/3 text-left">
+                            <h4 class="text-2xl font-bold text-gray-800 mb-3">Alianza Educativa</h4>
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                                Gracias al convenio firmado con el Instituto Superior Tecnológico Valle Grande, las
+                                docentes del área de Educación para el Trabajo y las estudiantes participan en el
+                                Programa de Transitabilidad, un modelo que integra la educación básica con la formación
+                                técnica profesional.
+                            </p>
+                        </div>
+
+                        <div class="md:w-1/3 flex-shrink-0">
+                            <img src="{{ url_for('static', filename='image/santa_rita.png') }}"
+                                alt="Logo [Nombre del Colegio]"
+                                class="w-48 h-48 md:w-56 md:h-56 object-contain mx-auto">
+                        </div>
+                    </div>
+
+                    <hr class="border-t-2 border-yellow-100 my-8">
+
+                    <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+
+                        <div class="flex-shrink-0">
+                            <img src="{{ url_for('static', filename='image/director_srita.png') }}"
+                                alt="Foto del Director"
+                                class="w-32 h-32 object-cover rounded-full shadow-lg border-4 border-white">
+                        </div>
+
+                        <div class="flex-1 text-center md:text-left">
+                            <p class="text-lg italic text-gray-700 mb-4 leading-relaxed">
+                                “La transitabilidad es una oportunidad valiosa para que nuestras estudiantes encuentren
+                                su vocación, aprendan haciendo y se preparen para el mundo profesional.”
+                            </p>
+                            <footer class="text-right md:text-left bg-yellow-50">
+                                <p class="font-bold text-gray-900">Lic. César Augusto Tumay Cuya</p>
+                                <p class="text-sm text-gray-600">Director de la I.E. Santa Rita de Casia (San Vicente,
+                                    Cañete)</p>
+                            </footer>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="convenio-centro" class="bg-green-50 rounded-2xl shadow-lg p-8 md:p-12 max-w-5xl mx-auto mb-12">
+
+                    <h3 class="text-2xl md:text-3xl font-bold text-center text-primario mb-10">
+                        Convenio Valle Grande – I.E. 2188 “Centro de Mujeres”
+                    </h3>
+
+                    <div class="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12">
+
+                        <div class="md:w-2/3 text-left">
+                            <h4 class="text-2xl font-bold text-gray-800 mb-3">Alianza Educativa</h4>
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                                Gracias al convenio firmado con el Instituto Superior Tecnológico Valle Grande, las
+                                estudiantes y docentes del área de Educación para el Trabajo desarrollan un aprendizaje
+                                colaborativo, digital y orientado al futuro profesional.
+                            </p>
+                        </div>
+
+                        <div class="md:w-1/3 flex-shrink-0">
+                            <img src="{{ url_for('static', filename='image/centro_de_mujeres.png') }}"
+                                alt="Logo [Nombre del Colegio]"
+                                class="w-48 h-48 md:w-56 md:h-56 object-contain mx-auto">
+                        </div>
+                    </div>
+
+                    <hr class="border-t-2 border-green-200 my-8">
+
+                    <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+
+                        <div class="flex-shrink-0">
+                            <img src="{{ url_for('static', filename='image/director_centro.png') }}"
+                                alt="Foto del Director"
+                                class="w-32 h-32 object-cover rounded-full shadow-lg border-4 border-white">
+                        </div>
+
+                        <div class="flex-1 text-center md:text-left">
+                            <p class="text-lg italic text-gray-700 mb-4 leading-relaxed">
+                                “Este programa es una gran oportunidad para que nuestras estudiantes encuentren su
+                                vocación, fortalezcan sus competencias digitales y se preparen para un futuro lleno de
+                                posibilidades.”
+                            </p>
+                            <footer class="text-right md:text-left bg-green-50">
+                                <p class="font-bold text-gray-900">Prof. Edwin Pipay Román</p>
+                                <p class="text-sm text-gray-600">Director de la I.E. 2188 “Centro de Mujeres” (San
+                                    Vicente, Cañete)</p>
+                            </footer>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="convenio-mariategui"
+                    class="bg-yellow-50 rounded-2xl shadow-lg p-8 md:p-12 max-w-5xl mx-auto mb-12">
+
+                    <h3 class="text-2xl md:text-3xl font-bold text-center text-primario mb-10">
+                        Convenio Valle Grande – I.E. 2243 José Carlos Mariátegui “La Chira”
+                    </h3>
+
+                    <div class="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12">
+
+                        <div class="md:w-2/3 text-left">
+                            <h4 class="text-2xl font-bold text-gray-800 mb-3">Alianza Educativa</h4>
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                                Mediante este convenio, docentes del área de Educación para el Trabajo y estudiantes
+                                participan activamente en el Programa de Transitabilidad, que integra la formación
+                                básica escolar con la enseñanza técnica profesional del Instituto Valle Grande.
+                            </p>
+                        </div>
+
+                        <div class="md:w-1/3 flex-shrink-0">
+                            <img src="{{ url_for('static', filename='image/mariategui.png') }}"
+                                alt="Logo [Nombre del Colegio]"
+                                class="w-48 h-48 md:w-56 md:h-56 object-contain mx-auto">
+                        </div>
+                    </div>
+
+                    <hr class="border-t-2 border-yellow-100 my-8">
+
+                    <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+
+                        <div class="flex-shrink-0">
+                            <img src="{{ url_for('static', filename='image/director_carlos.png') }}"
+                                alt="Foto del Director"
+                                class="w-32 h-32 object-cover rounded-full shadow-lg border-4 border-white">
+                        </div>
+
+                        <div class="flex-1 text-center md:text-left">
+                            <p class="text-lg italic text-gray-700 mb-4 leading-relaxed">
+                                “La transitabilidad es una oportunidad valiosa para que nuestros estudiantes aprendan
+                                haciendo, descubran su vocación y se preparen para el futuro con el apoyo de
+                                profesionales del Instituto Valle Grande.”
+                            </p>
+                            <footer class="text-right md:text-left bg-yellow-50">
+                                <p class="font-bold text-gray-900">Prof. Edwin Ronal Alba Guerrero</p>
+                                <p class="text-sm text-gray-600">Director de la I.E. 2243 José Carlos Mariátegui “La
+                                    Chira” (Quilmaná, Cañete)</p>
+                            </footer>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+
+    <footer class="bg-blue-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-6">
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+
+                <div class="md:text-center"> <a href="{{ url_for('inicio') }}"
+                        class="flex items-center justify-center md:justify-center gap-3 mb-4">
+                        <img src="{{ url_for('static', filename='image/logo_piepag.png') }}" alt="Logo Programa"
+                            class="h-20 w-auto">
+                    </a>
+                    <p class="nunito1 text-sm text-gray-300 leading-relaxed text-center">
+                        Conectando tu colegio con tu futuro profesional.
+                    </p>
+                </div>
+
+                <div>
+                    <h5 class="poppins3 text-xl font-bold mb-4">Navegación</h5>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="{{ url_for('inicio') }}"
+                                class="nunito2 text-white hover:text-yellow-400 transition-colors duration-200">
+                                ¿Quiénes Somos?
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('inscribete') }}"
+                                class="nunito2 text-white hover:text-yellow-400 transition-colors duration-200">
+                                Inscríbete
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#Objetivo"
+                                class="nunito2 text-white hover:text-yellow-400 transition-colors duration-200">
+                                Objetivo
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#convenios"
+                                class="nunito2 text-white hover:text-yellow-400 transition-colors duration-200">
+                                Convenios
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="poppins3 text-xl font-bold mb-4">Contacto</h5>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center gap-3 nunito2">
+                            <i class="fa-solid fa-envelope fa-lg w-6 text-center"></i>
+                            <span>info@transitabilidad.pe</span>
+                        </li>
+                        <li class="flex items-center gap-3 nunito2">
+                            <i class="fa-solid fa-globe fa-lg w-6 text-center"></i>
+                            <span>vallegrande.edu.pe</span>
+                        </li>
+                    </ul>
+
+                    <h5 class="poppins3 text-xl font-bold mb-4">Síguenos</h5>
+                    <div class="flex gap-4">
+                        <a href="https://www.facebook.com/ValleGrandeOficial" target="_blank" rel="noopener noreferrer"
+                            class="text-3xl text-gray-300 hover:text-yellow-400 transition-colors duration-200">
+                            <i class="fa-brands fa-facebook-square"></i>
+                        </a>
+                        <a href="https://www.instagram.com/vallegrandeoficial/" target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-3xl text-gray-300 hover:text-yellow-400 transition-colors duration-200">
+                            <i class="fa-brands fa-instagram-square"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@vallegrande" target="_blank" rel="noopener noreferrer"
+                            class="text-3xl text-gray-300 hover:text-yellow-400 transition-colors duration-200">
+                            <i class="fa-brands fa-youtube-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="border-t border-blue-700 my-8">
+
+            <div class="text-center text-gray-400 nunito1 text-sm">
+                &copy; 2025 Programa de Transitabilidad. Todos los derechos reservados.
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/header.js') }}"></script>
+</body>
+
+</htmlss>

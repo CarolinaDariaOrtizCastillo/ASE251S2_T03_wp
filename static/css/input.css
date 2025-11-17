@@ -1,0 +1,239 @@
+/* --------------------------------------------------
+   Fuente principal
+-------------------------------------------------- */
+body {
+    font-family: 'Nunito', sans-serif;
+}
+
+
+/* --------------------------------------------------
+   NAVBAR
+-------------------------------------------------- */
+.navbar {
+    background-color: #003366;
+}
+
+.nav-link {
+    color: white !important;
+    font-weight: 600;
+    transition: 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+    color: #ffd700 !important;
+    transform: translateY(-2px);
+}
+
+.navbar-brand img {
+    height: 50px;
+}
+
+
+/* --------------------------------------------------
+   CARRUSEL / HERO
+-------------------------------------------------- */
+.hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #003366;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #004488;
+}
+
+/* Animación fade */
+.fade-in {
+    opacity: 0;
+    animation: fadeInAnimation 1.2s forwards ease-in-out;
+}
+
+@keyframes fadeInAnimation {
+    to { opacity: 1; }
+}
+
+
+/* --------------------------------------------------
+   TARJETAS / SECCIONES
+-------------------------------------------------- */
+.card-custom {
+    transition: 0.3s ease;
+    border-radius: 1.2rem;
+}
+
+.card-custom:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.card-icon {
+    font-size: 2.8rem;
+    color: #ffcc00;
+}
+
+
+/* --------------------------------------------------
+   FORMULARIOS GENERALES
+-------------------------------------------------- */
+.label-form {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #003366;
+    margin-bottom: 6px;
+}
+
+.input-form {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 1rem;
+    border: 2px solid #d1d5db;
+    border-radius: 10px;
+    transition: 0.25s ease;
+    font-family: 'Nunito', sans-serif;
+    background-color: #ffffff;
+}
+
+.input-form:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 8px rgba(37,99,235,0.3);
+}
+
+select.input-form {
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='20' viewBox='0 0 20 20' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M5.516 7.548c0.436-0.446 1.14-0.446 1.576 0l2.908 2.97 2.908-2.97c0.436-0.446 1.14-0.446 1.576 0 0.436 0.447 0.436 1.17 0 1.616l-3.695 3.768c-0.217 0.221-0.502 0.334-0.788 0.334s-0.571-0.113-0.788-0.334l-3.695-3.768c-0.436-0.446-0.436-1.169 0-1.616z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+}
+
+.error-message {
+    display: none;
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+
+/* --------------------------------------------------
+   CHECKBOX
+-------------------------------------------------- */
+.checkbox-form {
+    width: 18px;
+    height: 18px;
+    accent-color: #2563eb;
+}
+
+
+/* --------------------------------------------------
+   BOTONES
+-------------------------------------------------- */
+.btn-primary-custom {
+    background-color: #003366;
+    color: white;
+    font-weight: 700;
+    padding: 12px 20px;
+    border-radius: 0.8rem;
+    transition: 0.3s ease;
+}
+
+.btn-primary-custom:hover {
+    background-color: #004488;
+    transform: translateY(-3px);
+}
+
+.btn-yellow {
+    background-color: #facc15;
+    color: #003366;
+    padding: 12px 20px;
+    font-weight: bold;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.btn-yellow:hover {
+    background-color: #fde047;
+    transform: translateY(-2px);
+}
+
+
+/* --------------------------------------------------
+   SECCIÓN CONTACTO
+-------------------------------------------------- */
+.contact-box {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 1rem;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.contact-icon {
+    font-size: 2.5rem;
+    color: #003366;
+}
+
+
+/* --------------------------------------------------
+   FOOTER
+-------------------------------------------------- */
+footer {
+    background-color: #003366;
+    color: white;
+}
+
+footer a {
+    color: #ffd700;
+    transition: 0.3s ease;
+}
+
+footer a:hover {
+    color: #ffffff;
+}
+
+
+/* --------------------------------------------------
+   ANIMACIONES EXTRA
+-------------------------------------------------- */
+
+/* Zoom suave */
+.zoom-in {
+    animation: zoomIn 0.6s ease both;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Slide de abajo */
+.slide-up {
+    animation: slideUp 0.7s ease both;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Slide derecha */
+.slide-right {
+    animation: slideRight 0.7s ease both;
+}
+
+@keyframes slideRight {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* Slide izquierda */
+.slide-left {
+    animation: slideLeft 0.7s ease both;
+}
+
+@keyframes slideLeft {
+    from { transform: translateX(20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}

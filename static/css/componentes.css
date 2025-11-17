@@ -1,0 +1,54 @@
+/* ========== COMPONENTES REUTILIZABLES ===== */
+
+/* Card genérica */
+.card {
+  background-color: var(--color-fondo);
+  box-shadow: var(--sombra-base);
+  border-radius: var(--radio-md);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Botones visuales especiales */
+.btn-yellow {
+  background-color: var(--color-secundario);
+  color: #000;
+}
+
+.btn-blue {
+  background-color: var(--color-primario);
+  color: #fff;
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  background-color: var(--color-secundario);
+  color: #000;
+  padding: 6px 12px;
+  border-radius: 50px;
+  font-weight: 600;
+}
+
+/* Infografía de pasos (para la página de inscripción) */
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.step .number {
+  background-color: var(--color-primario);
+  color: #fff;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

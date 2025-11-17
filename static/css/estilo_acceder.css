@@ -1,0 +1,88 @@
+/* ======= ESTILOS ESPECÍFICOS: ACCEDER ====== */
+
+/* Contenedor principal */
+.container {
+  text-align: center;
+}
+
+/* Título principal */
+.main-title {
+  font-family: var(--fuente-destacada);
+  font-size: var(--titulo-lg);
+  color: var(--color-primario);
+  margin-bottom: var(--espaciado-lg);
+}
+
+/* Slider de tarjetas */
+.card-slider {
+  overflow: hidden;
+  margin-bottom: var(--espaciado-lg);
+}
+
+.slider-container {
+  display: flex;
+  gap: var(--espaciado-md);
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.slide-card {
+  min-width: 300px;
+  border-radius: var(--radio-md);
+  box-shadow: var(--sombra-media);
+  background-color: var(--color-fondo);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.slide-card:hover {
+  transform: scale(1.03);
+}
+
+.slide-card img {
+  width: 100%;
+  height: auto;
+}
+
+.card-content {
+  padding: var(--espaciado-md);
+}
+
+.btn-card {
+  display: inline-block;
+  background-color: var(--color-primario);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: var(--radio-sm);
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.btn-card:hover {
+  background-color: var(--color-secundario);
+  color: #000;
+}
+
+/* Sección de llamado a la acción */
+.cta-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--espaciado-md);
+  background-color: var(--color-gris-claro);
+  padding: var(--espaciado-md);
+  border-radius: var(--radio-md);
+}
+
+.btn-green-pill {
+  background-color: var(--color-verde);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.character-image {
+  height: 225px;
+}

@@ -1,0 +1,11 @@
+/* main.css */
+@import url('base.css');        /* Variables globales, reset */
+@import url('tipografia.css');  /* Fuentes y clases tipográficas */
+@import url('paleta.css');      /* Clases rápidas de color */
+
+@import url('layout.css');      /* Estructura general */
+@import url('header.css');      /* Navbar, menú */
+@import url('componentes.css'); /* Cards, badges, steps, carrusel */
+@import url('botones.css');     /* Botones (depende de variables y layout) */
+@import url('imagenes.css');    /* Imágenes y decoraciones */
+@import url('carrusel.css');    /* Carrusel adicional o extendido */

@@ -1,0 +1,76 @@
+/* ======= ESTILOS: INSCRÍBETE =============== */
+
+/* Pasos */
+.steps-section {
+  text-align: center;
+  margin-bottom: var(--espaciado-lg);
+}
+
+.steps-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--espaciado-lg);
+}
+
+.steps-infographic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaciado-md);
+}
+
+.step-arrow {
+  color: var(--color-primario);
+}
+
+.btn-main {
+  background-color: var(--color-secundario);
+  color: #000;
+  padding: 12px 24px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Galería */
+.image-gallery {
+  display: flex;
+  gap: var(--espaciado-md);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: var(--espaciado-lg) 0;
+}
+
+.gallery-item img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: var(--radio-md);
+  box-shadow: var(--sombra-base);
+}
+
+/* Formulario */
+.form-choice-section {
+  text-align: center;
+}
+
+.choice-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaciado-md);
+  flex-wrap: wrap;
+}
+
+.btn-choice {
+  background-color: var(--color-primario);
+  color: #fff;
+  padding: 14px 24px;
+  border-radius: var(--radio-md);
+  text-decoration: none;
+}
+
+.choice-character {
+  height: 150px;
+}

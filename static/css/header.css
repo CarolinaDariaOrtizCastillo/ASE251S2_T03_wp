@@ -1,0 +1,178 @@
+/* ====== NAVBAR ====== */
+.navbar {
+  display: flex;
+  justify-content: space-between; /* [Logo] ... [nav-container] */
+  align-items: center;
+  background-color: #1E3A8A; /* azul fuerte (del figma) */
+  padding: 10px 30px;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  min-height: 120px; /* Altura mínima */
+}
+
+/* Logo */
+.navbar .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none; /* Quitar subrayado del <a> */
+}
+
+.navbar .logo img {
+  height: 90px; /* tamaño del logo */
+  width: auto;
+}
+
+.navbar .logo span {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+}
+
+/* Estilo para "TRANSITABILIDAD" en rojo */
+.navbar .logo .logo-accent {
+  color: #EF4444; /* Un rojo vibrante */
+  font-weight: 800;
+}
+
+/* Contenedor de navegación derecha */
+.nav-container {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espacio entre el menú y el ícono de perfil */
+}
+
+/* Menú */
+.menu ul {
+  list-style: none;
+  display: flex;
+  gap: 25px; /* Espacio entre "Quiénes Somos", "Inscríbete", etc. */
+  margin: 0;
+  padding: 0;
+}
+
+.menu ul li {
+  display: inline-block;
+}
+
+.menu ul li a {
+  display: flex;
+  align-items: center;
+  padding: 8px 18px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 20px; /* Más redondeado */
+  transition: background 0.3s ease, color 0.3s ease;
+  border: 1px solid #fff; /* Borde blanco para botones no activos */
+}
+
+/* --- Animación de Pulsación --- */
+@keyframes pulse-subtle {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(251, 191, 36, 0);
+  }
+}
+
+/* Botón activo (Amarillo) con Animación */
+.menu ul li a.active {
+  background: #FBBF24; /* Amarillo del figma */
+  color: #1E3A8A;     /* Texto azul oscuro */
+  border-color: #FBBF24; /* Borde del mismo color */
+  font-weight: 700;
+  /* Aplicamos la animación */
+  animation: pulse-subtle 2.5s infinite;
+}
+
+/* Hover para botones NO activos */
+.menu ul li a:not(.active):hover {
+  background: #3061e680; 
+  border-color: #fefafa;
+}
+
+/* Perfil de Usuario */
+.user-profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;  /* Tamaño del círculo */
+    height: 44px; /* Tamaño del círculo */
+    background-color: #fff;
+    color: #1E3A8A; /* Color del ícono */
+    border-radius: 50%; /* Círculo perfecto */
+    text-decoration: none;
+    font-size: 20px; /* Tamaño del ícono de usuario */
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.user-profile:hover {
+    background-color: #e0e0e0;
+}
+
+/* Botón móvil (hamburguesa) */
+.menu-toggle {
+  display: none;
+  font-size: 24px; /* Tamaño del ícono */
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* --- Responsivo --- */
+@media (max-width: 768px) {
+  .menu {
+    display: none; /* Ocultar menú de escritorio */
+    flex-direction: column;
+    position: absolute;
+    top: 70px; /* Justo debajo del navbar */
+    right: 20px;
+    background: #1E3A8A;
+    padding: 15px;
+    border-radius: 10px;
+    width: 250px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+  
+  .user-profile {
+      display: none; /* Ocultar ícono de perfil en móvil */
+  }
+  
+  /* Clase que añade el JS para mostrar el menú */
+  .menu.open {
+    display: flex;
+  }
+
+  .menu ul {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  
+  .menu ul li a {
+      justify-content: center;
+      padding: 12px 15px;
+  }
+
+  .menu-toggle {
+    display: block; /* Mostrar botón hamburguesa */
+  }
+  
+  @media (max-width: 480px) {
+      .navbar .logo span {
+          display: none; /* Ocultar texto del logo en pantallas muy chicas */
+      }
+      .navbar {
+          padding: 10px 15px;
+      }
+  }
+}

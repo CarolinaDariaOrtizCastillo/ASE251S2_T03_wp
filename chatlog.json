@@ -1,0 +1,62 @@
+[
+  {
+    "timestamp": "2025-09-27T23:13:44.014110",
+    "user": "Hola",
+    "bot": "¡Hola! ¿En qué puedo ayudarte hoy?"
+  },
+  {
+    "timestamp": "2025-09-27T23:13:59.790313",
+    "user": "sobre un producto",
+    "bot": "Recibí tu mensaje: 'sobre un producto'. ¿Podrías darme más contexto?"
+  },
+  {
+    "timestamp": "2025-09-28T13:24:01.797467",
+    "user": "Hola",
+    "bot": "¡Hola! ¿En qué puedo ayudarte hoy?"
+  },
+  {
+    "timestamp": "2025-09-28T13:24:15.727752",
+    "user": "Me podrias dar el precio de los perfumes",
+    "bot": "Recibí tu mensaje: 'Me podrias dar el precio de los perfumes'. ¿Podrías darme más contexto?"
+  },
+  {
+    "timestamp": "2025-09-28T13:24:48.841433",
+    "user": "el perfume agua",
+    "bot": "Recibí tu mensaje: 'el perfume agua'. ¿Podrías darme más contexto?"
+  },
+  {
+    "timestamp": "2025-09-29T21:00:47.450043",
+    "user": "Hola",
+    "bot": "¡Hola! ¿En qué puedo ayudarte hoy?"
+  },
+  {
+    "timestamp": "2025-09-29T21:13:55.804999",
+    "user": "Hola",
+    "bot": "¡Hola! ¿En qué puedo ayudarte hoy?"
+  },
+  {
+    "timestamp": "2025-09-29T21:14:27.028727",
+    "user": "Hola",
+    "bot": "¡Hola! ¿En qué puedo ayudarte hoy?"
+  },
+  {
+    "timestamp": "2025-09-29T21:30:40.032298",
+    "user": "hola",
+    "bot": "¡Hola! ¿En qué puedo ayudarte hoy?"
+  },
+  {
+    "timestamp": "2025-09-29T21:31:08.070378",
+    "user": "dame precios",
+    "bot": "Recibí tu mensaje: 'dame precios'. ¿Podrías darme más contexto?"
+  },
+  {
+    "timestamp": "2025-09-29T22:32:24.334908",
+    "user": "Hola",
+    "bot": "¡Hola! ¿En qué puedo ayudarte hoy?"
+  },
+  {
+    "timestamp": "2025-09-29T22:36:59.563709",
+    "user": "hola",
+    "bot": "¡Hola! ¿En qué puedo ayudarte hoy?"
+  }
+]

@@ -1,0 +1,21 @@
+/* 🖼️ imagenes.css */
+.img-redonda {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.img-sombra {
+  box-shadow: 0 4px 10px var(--color-sombra);
+}
+
+.img-borde-azul {
+  border: 3px solid var(--color-primario);
+}
+
+.icono-borde {
+  border: 2px solid var(--color-primario);
+  border-radius: 50%;
+  padding: 10px;
+  width: 60px;
+  height: 60px;
+}

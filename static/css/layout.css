@@ -1,0 +1,40 @@
+/* ========== LAYOUT GLOBAL ================ */
+
+body {
+  background-color: var(--color-fondo);
+  font-family: var(--fuente-principal);
+  color: var(--color-texto);
+  margin: 0;
+  padding: 0;
+}
+
+/* Contenedor principal */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--espaciado-lg) 0;
+}
+
+/* Secciones generales */
+section {
+  padding: var(--espaciado-lg) 0;
+}
+
+/* Navbar y Footer (si no están en componentes) */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--espaciado-md);
+  background-color: var(--color-primario);
+  color: #fff;
+}
+
+.footer {
+  background-color: var(--color-gris-claro);
+  text-align: center;
+  padding: var(--espaciado-md);
+  font-size: var(--texto-sm);
+  color: var(--color-texto);
+}

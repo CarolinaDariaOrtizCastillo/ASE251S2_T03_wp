@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programa de Transitabilidad</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@400;600&family=Raleway:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+
+<body>
+
+    <!-- HEADER Y NAVBAR FUNCIONAL RESPONSIVE -->
+
+    <header class="navbar">
+        <a href="{{ url_for('inicio') }}" class="logo">
+            <img src="{{ url_for('static', filename='image/logo_web.png') }}" alt="Logo Programa">
+        </a>
+
+        <div class="nav-container">
+
+            <nav class="menu" id="nav-menu">
+                <ul>
+                    <li><a href="{{ url_for('inicio') }}">¿Quiénes Somos?</a></li>
+                    <li><a href="{{ url_for('inscribete') }}" class="active">INSCRÍBETE</a></li>
+                    <li><a href="{{ url_for('contactanos') }}">Contáctanos</a></li>
+                </ul>
+            </nav>
+
+            <!-- 
+          🔹 ¡AQUÍ ESTÁ LA LÓGICA! 🔹
+          Comprueba si el usuario ha iniciado sesión.
+        -->
+            {% if session['user_id'] %}
+            <!-- SI EL USUARIO SÍ ESTÁ LOGUEADO -->
+            <!-- Enlaza a 'logout' y muestra un ícono de "salir" -->
+            <a href="{{ url_for('logout') }}" class="user-profile" title="Cerrar Sesión">
+                <i class="fa-solid fa-sign-out-alt"></i>
+            </a>
+            {% else %}
+            <!-- SI EL USUARIO NO ESTÁ LOGUEADO -->
+            <!-- Enlaza a 'login' y muestra el ícono de "usuario" -->
+            <a href="{{ url_for('login') }}" class="user-profile" title="Iniciar Sesión">
+                <i class="fa-solid fa-user"></i>
+            </a>
+            {% endif %}
+            <!-- 🔹 FIN DE LA LÓGICA 🔹 -->
+
+            <button class="menu-toggle" id="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-16 max-w-4xl">
+
+        <h2 class="raleway3 text-4xl md:text-5xl text-center" style="line-height: 1.2; margin-bottom: 24px;">
+            <span class="nunito2" style="font-weight: 600; color: var(--color-texto);">¿Tienes alguna pregunta?</span>
+            <strong
+                style="color: var(--color-secundario); display: block; -webkit-text-stroke: 1px #a16207; text-shadow: 0px 2px 4px rgba(0,0,0,0.1);">¡PONTE
+                EN CONTACTO CON NOSOTROS!</strong>
+        </h2>
+
+
+        <section id="contacto" class="container mx-auto px-6 py-10"
+            style="background-color: #10B98140; text-align: center;">
+
+            <div class="contact-info-banner mb-1">
+                <h4 class="text-2xl font-bold mb-2">Información de contacto</h4>
+                <p class="text-lg">Elige tu método favorito de contacto para hacernos tu consulta o tu problema.</p>
+            </div>
+        </section>
+
+        <section id="correo-numero" class="container mx-auto px-6 py-16 
+    flex flex-col md:flex-row justify-center gap-8">
+
+            <div
+                class="flex-1 max-w-md bg-white border-4 border-yellow-400 rounded-2xl shadow-lg p-8 text-center transform hover:scale-[1.03] transition-transform duration-300">
+
+                <a href="mailto:informes@vallegrande.edu.pe" class="contact-card">
+                    <img src="{{ url_for('static', filename='icon/correo.png') }}" alt="Icono de Correo"
+                        class="contact-card-icon"
+                        style="height: 50px; width: 50px; object-fit: contain; margin-left: auto; margin-right: auto;">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Correos</h3>
+                    <p> ▪️ informes@vallegrande.edu.pe</p>
+                    <p> ▪️ admision@vallegrande.edu.pe</p>
+                </a>
+            </div>
+
+            <div
+                class="flex-1 max-w-md bg-white border-4 border-yellow-400 rounded-2xl shadow-lg p-8 text-center transform hover:scale-[1.03] transition-transform duration-300">
+                <a href="https://wa.me/51991692547" target="_blank" class="contact-card">
+                    <img src="{{ url_for('static', filename='icon/whatsapp.png') }}" alt="Icono de WhatsApp"
+                        class="contact-card-icon"
+                        style="height: 50px; width: 50px; object-fit: contain; margin-left: auto; margin-right: auto;">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">WhatsApp</h3>
+                    <p> ▪️ (01) 581-2261</p>
+                    <p> ▪️ 991 692 547</p>
+                </a>
+            </div>
+
+        </section>
+
+        <section id="redes" class="container mx-auto px-6 py-10" style="background-color: #fefafa; text-align: center;">
+            <h2 class="text-3xl font-bold text-center text-primario mb-8">Redes Sociales</h2>
+            <div class="flex justify-center gap-10 md:gap-16 mb-16">
+
+                <a href="https://www.instagram.com/vallegrandeoficial/" target="_blank">
+                    <img src="{{ url_for('static', filename='icon/instagram.png') }}" alt="Icono de Instagram"
+                        class="social-icon-contact social-icon-js"
+                        style="height: 30px; width: 30px; object-fit: contain; margin-left: auto; margin-right: auto;">
+                </a>
+
+                <a href="https://www.facebook.com/ValleGrandeOficial" target="_blank">
+                    <img src="{{ url_for('static', filename='icon/facebook.png') }}" alt="Icono de Facebook"
+                        class="social-icon-contact social-icon-js"
+                        style="height: 30px; width: 30px; object-fit: contain; margin-left: auto; margin-right: auto;">
+                </a>
+
+                <a href="https://www.youtube.com/@vallegrande" target="_blank">
+                    <img src="{{ url_for('static', filename='icon/youtube.png') }}" alt="Icono de YouTube"
+                        class="social-icon-contact social-icon-js"
+                        style="height: 30px; width: 30px; object-fit: contain; margin-left: auto; margin-right: auto;">
+                </a>
+            </div>
+        </section>
+
+        <section id="mapa" class="my-16">
+            <h2 class="text-3xl font-bold text-center text-primario mb-8">
+                ¡Ubícanos aquí!
+            </h2>
+
+            <div class="rounded-2xl shadow-2xl overflow-hidden border-4 border-white max-w-5xl mx-auto">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3699.04742416388!2d-76.39036282509555!3d-13.081628762031082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x910ff935c4a035bb%3A0x1b32f04916c31d1c!2sIES%20Valle%20Grande!5e1!3m2!1ses!2spe!4v1761444975632!5m2!1ses!2spe"
+                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </section>
+
+
+    </main>
+
+    <!-- FOOTER-->
+
+    <footer class="bg-blue-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-6">
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+
+                <div class="md:text-center"> <a href="{{ url_for('inicio') }}"
+                        class="flex items-center justify-center md:justify-center gap-3 mb-4">
+                        <img src="{{ url_for('static', filename='image/logo_piepag.png') }}" alt="Logo Programa"
+                            class="h-20 w-auto">
+                    </a>
+                    <p class="nunito1 text-sm text-gray-300 leading-relaxed text-center">
+                        Conectando tu colegio con tu futuro profesional.
+                    </p>
+                </div>
+
+                <div>
+                    <h5 class="poppins3 text-xl font-bold mb-4">Navegación</h5>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="{{ url_for('inicio') }}"
+                                class="nunito2 text-white hover:text-yellow-400 transition-colors duration-200">
+                                ¿Quiénes somos?
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('inscribete') }}"
+                                class="nunito2 text-white hover:text-yellow-400 transition-colors duration-200">
+                                Inscríbete
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#correo-numero"
+                                class="nunito2 text-white hover:text-yellow-400 transition-colors duration-200">
+                                Contáctanos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#mapa"
+                                class="nunito2 text-white hover:text-yellow-400 transition-colors duration-200">
+                                Ubícanos
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="poppins3 text-xl font-bold mb-4">Contacto</h5>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center gap-3 nunito2">
+                            <i class="fa-solid fa-envelope fa-lg w-6 text-center"></i>
+                            <span>info@transitabilidad.pe</span>
+                        </li>
+                        <li class="flex items-center gap-3 nunito2">
+                            <i class="fa-solid fa-globe fa-lg w-6 text-center"></i>
+                            <span>vallegrande.edu.pe</span>
+                        </li>
+                    </ul>
+
+                    <h5 class="poppins3 text-xl font-bold mb-4">Síguenos</h5>
+                    <div class="flex gap-4">
+                        <a href="https://www.facebook.com/ValleGrandeOficial" target="_blank" rel="noopener noreferrer"
+                            class="text-3xl text-gray-300 hover:text-yellow-400 transition-colors duration-200">
+                            <i class="fa-brands fa-facebook-square"></i>
+                        </a>
+                        <a href="https://www.instagram.com/vallegrandeoficial/" target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-3xl text-gray-300 hover:text-yellow-400 transition-colors duration-200">
+                            <i class="fa-brands fa-instagram-square"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@vallegrande" target="_blank" rel="noopener noreferrer"
+                            class="text-3xl text-gray-300 hover:text-yellow-400 transition-colors duration-200">
+                            <i class="fa-brands fa-youtube-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="border-t border-blue-700 my-8">
+
+            <div class="text-center text-gray-400 nunito1 text-sm">
+                &copy; 2025 Programa de Transitabilidad. Todos los derechos reservados.
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/contactanos.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/header.js') }}"></script>
+
+</body>
+
+</html>

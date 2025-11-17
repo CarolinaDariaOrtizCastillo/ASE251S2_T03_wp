@@ -1,0 +1,39 @@
+/* 🔘 botones.css */
+.btn {
+  display: inline-block;
+  padding: var(--espaciado-sm) var(--espaciado-md);
+  border-radius: var(--radio-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Variantes */
+.btn-primario {
+  background-color: var(--color-primario);
+  color: #fff;
+}
+
+.btn-primario:hover {
+  background-color: #2e52ad;
+}
+
+.btn-secundario {
+  background-color: var(--color-secundario);
+  color: var(--color-primario);
+}
+
+.btn-secundario:hover {
+  background-color: #fde047;
+}
+
+.btn-borde {
+  border: 2px solid var(--color-primario);
+  color: var(--color-primario);
+  background: transparent;
+}
+
+.btn-borde:hover {
+  background-color: var(--color-primario);
+  color: #fff;
+}

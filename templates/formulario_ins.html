@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro de Institución - Programa de Transitabilidad</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@400;600&family=Raleway:wght@700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'primario': '#1E3A8A',
+            'primario-hover': '#3061e680',
+            'secundario': '#FBBF24',
+            'rojo-logo': '#EF4444',
+            'verde-claro': '#C6F6D5',
+            'amarillo-claro': '#FEF9C3',
+            'gray-form': '#f5f5f5',
+            'blue-accent': '#2f80ed',
+            'dark-text': '#333333',
+            'light-text': '#666666',
+          },
+          fontFamily: {
+            sans: ['Nunito', 'sans-serif'],
+          },
+          borderRadius: {
+            'lg': '1rem',
+            'xl': '1.5rem',
+            '2xl': '2rem',
+          },
+          boxShadow: {
+            'input': '0 2px 4px rgba(0,0,0,0.05)',
+            'card': '0 4px 12px rgba(0,0,0,0.08)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style type="text/tailwindcss">
+    @layer components {
+            .alert {
+                @apply p-4 mb-4 border rounded-lg text-sm;
+            }
+            .alert-success {
+                @apply bg-green-100 border-green-400 text-green-700;
+            }
+            .alert-danger {
+                @apply bg-red-100 border-red-400 text-red-700;
+            }
+            .alert-warning {
+                @apply bg-yellow-100 border-yellow-400 text-yellow-700;
+            }
+        }
+    </style>
+
+</head>
+
+<body class="bg-gray-form font-sans text-dark-text min-h-screen flex flex-col">
+
+  <header>
+    <nav class="w-full px-8 py-6 shadow-sm" style="background-color: #1E3A8A;">
+      <div class="max-w-7xl mx-auto flex items-center justify-center">
+        <a href="{{ url_for('inicio') }}">
+          <img src="{{ url_for('static', filename='image/logo_vertical_fr.png') }}" alt="Logo Programa"
+            class="h-48 w-auto">
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-grow">
+    <section class="py-12 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto p-8 md:p-12 bg-white rounded-xl shadow-card">
+
+        <h1 class="text-3xl font-bold text-dark-text mb-8 text-center">
+          Registro de Institución Educativa
+        </h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="flash-container">
+          {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('formulario_ins') }}" method="POST" class="space-y-10">
+
+          <section class="pb-6 border-b border-gray-100">
+            <h2 class="text-xl font-semibold text-dark-text mb-6">Datos de la Institución</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+              <div class="md:col-span-2">
+                <label class="block text-sm font-medium text-light-text mb-1">Nombre de la Institución<span
+                    class="text-red-500">*</span></label>
+                <input name="nombre_institucion" required
+                  class="w-full border-0 border-b border-gray-200 bg-gray-50 rounded-lg px-4 py-3 shadow-input text-gray-800 focus:ring-blue-accent focus:border-blue-accent outline-none transition-all duration-200">
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-light-text mb-1">Tipo de Gestión<span
+                    class="text-red-500">*</span></label>
+                <select name="tipo_gestion" required
+                  class="w-full border-0 border-b border-gray-200 bg-gray-50 rounded-lg px-4 py-3 shadow-input text-gray-800 focus:ring-blue-accent focus:border-blue-accent outline-none transition-all duration-200">
+                  <option value="">Seleccione...</option>
+                  <option value="Pública">Pública</option>
+                  <option value="Privada">Privada</option>
+                </select>
+              </div>
+
+              <div class="md:col-span-2">
+                <label class="block text-sm font-medium text-light-text mb-1">Dirección<span
+                    class="text-red-500">*</span></label>
+                <input name="direccion" required
+                  class="w-full border-0 border-b border-gray-200 bg-gray-50 rounded-lg px-4 py-3 shadow-input text-gray-800 focus:ring-blue-accent focus:border-blue-accent outline-none transition-all duration-200">
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-light-text mb-1">Ubigeo (Distrito)<span
+                    class="text-red-500">*</span></label>
+                <select name="ubigeo" required
+                  class="w-full border-0 border-b border-gray-200 bg-gray-50 rounded-lg px-4 py-3 shadow-input text-gray-800 focus:ring-blue-accent focus:border-blue-accent outline-none transition-all duration-200">
+                  <option value="">Seleccione...</option>
+                  <option value="150501">San Vicente de Cañete</option>
+                  <option value="150502">Asia</option>
+                  <option value="150503">Calango</option>
+                  <option value="150504">Cerro Azul</option>
+                  <option value="150505">Chilca</option>
+                  <option value="150506">Coayllo</option>
+                  <option value="150507">Imperial</option>
+                  <option value="150508">Lunahuaná</option>
+                  <option value="150509">Mala</option>
+                  <option value="150510">Nuevo Imperial</option>
+                  <option value="150511">Pacarán</option>
+                  <option value="150512">Quilmaná</option>
+                  <option value="150513">San Antonio</option>
+                  <option value="150514">San Luis</option>
+                  <option value="150515">Santa Cruz de Flores</option>
+                  <option value="150516">Zúñiga</option>
+                </select>
+              </div>
+            </div>
+          </section>
+
+          <section class="pb-6 border-b border-gray-100">
+            <h2 class="text-xl font-semibold text-dark-text mb-6">Datos del Representante</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-sm font-medium text-light-text mb-1">Nombres<span
+                    class="text-red-500">*</span></label>
+                <input name="representante_nombre" required
+                  class="w-full border-0 border-b border-gray-200 bg-gray-50 rounded-lg px-4 py-3 shadow-input text-gray-800 focus:ring-blue-accent focus:border-blue-accent outline-none transition-all duration-200">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-light-text mb-1">Apellidos<span
+                    class="text-red-500">*</span></label>
+                <input name="representante_apellido" required
+                  class="w-full border-0 border-b border-gray-200 bg-gray-50 rounded-lg px-4 py-3 shadow-input text-gray-800 focus:ring-blue-accent focus:border-blue-accent outline-none transition-all duration-200">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-light-text mb-1">Rol<span
+                    class="text-red-500">*</span></label>
+                <select name="representante_rol" required
+                  class="w-full border-0 border-b border-gray-200 bg-gray-50 rounded-lg px-4 py-3 shadow-input text-gray-800 focus:ring-blue-accent focus:border-blue-accent outline-none transition-all duration-200">
+                  <option value="">Seleccione...</option>
+                  <option value="Director">Director(a)</option>
+                  <option value="Subdirector">Subdirector(a)</option>
+                  <option value="Coordinador">Coordinador(a)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-light-text mb-1">Celular (9 dígitos)<span
+                    class="text-red-500">*</span></label>
+                <input name="telefono_contacto" id="telefono_contacto" maxlength="9" required
+                  class="w-full border-0 border-b border-gray-200 bg-gray-50 rounded-lg px-4 py-3 shadow-input text-gray-800 focus:ring-blue-accent focus:border-blue-accent outline-none transition-all duration-200">
+                <p id="error_telefono" class="text-red-500 text-sm mt-1 hidden">El celular debe tener 9 dígitos.</p>
+              </div>
+              <div class="md:col-span-2">
+                <label class="block text-sm font-medium text-light-text mb-1">Correo Electrónico<span
+                    class="text-red-500">*</span></label>
+                <input name="correo_contacto" type="email" required
+                  class="w-full border-0 border-b border-gray-200 bg-gray-50 rounded-lg px-4 py-3 shadow-input text-gray-800 focus:ring-blue-accent focus:border-blue-accent outline-none transition-all duration-200">
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-semibold text-dark-text mb-6">Motivos de Participación</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4 mb-6">
+              <label class="flex items-center text-gray-600">
+                <input type="checkbox" name="motivo_capacitacion_docente"
+                  class="rounded-md border-gray-300 text-blue-accent focus:ring-blue-accent">
+                <span class="ml-2 text-sm">Capacitación Docente</span>
+              </label>
+              <label class="flex items-center text-gray-600">
+                <input type="checkbox" name="motivo_beneficios_estudiantes"
+                  class="rounded-md border-gray-300 text-blue-accent focus:ring-blue-accent">
+                <span class="ml-2 text-sm">Beneficios para Estudiantes</span>
+              </label>
+              <label class="flex items-center text-gray-600">
+                <input type="checkbox" name="motivo_innovacion_educativa"
+                  class="rounded-md border-gray-300 text-blue-accent focus:ring-blue-accent">
+                <span class="ml-2 text-sm">Innovación Educativa</span>
+              </label>
+              <label class="flex items-center text-gray-600">
+                <input type="checkbox" name="motivo_actividades_extracurriculares"
+                  class="rounded-md border-gray-300 text-blue-accent focus:ring-blue-accent">
+                <span class="ml-2 text-sm">Actividades Extracurriculares</span>
+              </label>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-light-text mb-1">Otro motivo (opcional)</label>
+              <input name="motivo_otro"
+                class="w-full border-0 border-b border-gray-200 bg-gray-50 rounded-lg px-4 py-3 shadow-input text-gray-800 focus:ring-blue-accent focus:border-blue-accent outline-none transition-all duration-200">
+            </div>
+          </section>
+
+          <div class="pt-6">
+            <button type="submit"
+              class="w-full py-4 px-8 rounded-xl bg-green-500 text-white font-bold text-lg shadow-md hover:bg-green-900 transition-colors duration-300">
+              Enviar Registro
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-dark-text text-white py-6 mt-12">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <p class="text-sm">© 2025 Programa de Transitabilidad. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script defer src="{{ url_for('static', filename='js/formulario_ins.js') }}"></script>
+
+</body>
+
+</html>

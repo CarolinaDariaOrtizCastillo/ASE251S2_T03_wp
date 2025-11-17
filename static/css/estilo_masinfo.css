@@ -1,0 +1,76 @@
+/* ========= ESTILOS: MÁS INFORMACIÓN ========= */
+
+/* Banner de video */
+.video-banner {
+  background-color: var(--color-primario);
+  color: #fff;
+  text-align: center;
+  padding: var(--espaciado-lg);
+  border-radius: var(--radio-md);
+}
+
+/* Bloques de información */
+.info-block-yellow {
+  background-color: var(--color-secundario);
+  color: #000;
+  padding: var(--espaciado-lg);
+  text-align: center;
+  border-radius: var(--radio-md);
+  margin: var(--espaciado-lg) 0;
+}
+
+.info-block-bordered {
+  border: 2px solid var(--color-primario);
+  padding: var(--espaciado-lg);
+  border-radius: var(--radio-md);
+  text-align: center;
+}
+
+/* Testimonios */
+.testimonials {
+  text-align: center;
+  margin: var(--espaciado-lg) 0;
+}
+
+.testimonials-container {
+  display: flex;
+  justify-content: center;
+  gap: var(--espaciado-md);
+  flex-wrap: wrap;
+}
+
+.testimonial-card {
+  background: var(--color-fondo);
+  border-radius: var(--radio-md);
+  box-shadow: var(--sombra-base);
+  padding: var(--espaciado-md);
+  width: 280px;
+}
+
+.testimonial-card.featured {
+  background-color: var(--color-secundario);
+  color: #000;
+}
+
+/* Redes sociales */
+.social-media {
+  text-align: center;
+  margin-top: var(--espaciado-lg);
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: var(--espaciado-md);
+  margin-bottom: var(--espaciado-sm);
+}
+
+.social-icons img {
+  width: 40px;
+  height: 40px;
+}
+
+.social-caption {
+  font-size: var(--texto-sm);
+  color: var(--color-texto);
+}

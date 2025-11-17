@@ -1,0 +1,16 @@
+/* ✍️ tipografia.css */
+
+/* Nunito */
+.nunito1 { font-family: var(--fuente-nunito); font-weight: 400; }
+.nunito2 { font-family: var(--fuente-nunito); font-weight: 600; }
+.nunito3 { font-family: var(--fuente-nunito); font-weight: 700; }
+
+/* Poppins */
+.poppins1 { font-family: var(--fuente-poppins); font-weight: 400; }
+.poppins2 { font-family: var(--fuente-poppins); font-weight: 600; }
+.poppins3 { font-family: var(--fuente-poppins); font-weight: 700; }
+
+/* Raleway */
+.raleway1 { font-family: var(--fuente-raleway); font-weight: 600; }
+.raleway2 { font-family: var(--fuente-raleway); font-weight: 700; }
+.raleway3 { font-family: var(--fuente-raleway); font-weight: 800; }

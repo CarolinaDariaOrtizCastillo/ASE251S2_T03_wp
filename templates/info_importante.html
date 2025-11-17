@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programa de Transitabilidad</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@400;600&family=Raleway:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/input.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
+</head>
+
+<body>
+
+    <!-- HEADER Y NAVBAR FUNCIONAL RESPONSIVE -->
+
+    <header class="navbar" style="background-color: #1E3A8A;">
+        <a href="{{ url_for('inicio') }}" class="logo">
+            <img src="{{ url_for('static', filename='image/logo_web.png') }}" alt="Logo Programa">
+        </a>
+
+        <div class="nav-container" style="background-color: #1E3A8A;">
+
+            <nav class="menu" id="nav-menu">
+                <ul>
+                    <li><a href="{{ url_for('mas_info') }}">¿Quiénes Somos?</a></li>
+                    <li><a href="{{ url_for('inscribete_login') }}" class="active">INSCRÍBETE</a></li>
+                    <li><a href="{{ url_for('contactanos_login') }}">Contáctanos</a></li>
+                </ul>
+            </nav>
+
+            <!-- 
+          🔹 ¡AQUÍ ESTÁ LA LÓGICA! 🔹
+          Comprueba si el usuario ha iniciado sesión.
+        -->
+            {% if session['user_id'] %}
+            <!-- SI EL USUARIO SÍ ESTÁ LOGUEADO -->
+            <!-- Enlaza a 'logout' y muestra un ícono de "salir" -->
+            <a href="{{ url_for('logout') }}" class="user-profile" title="Cerrar Sesión">
+                <i class="fa-solid fa-sign-out-alt"></i>
+            </a>
+            {% else %}
+            <!-- SI EL USUARIO NO ESTÁ LOGUEADO -->
+            <!-- Enlaza a 'login' y muestra el ícono de "usuario" -->
+            <a href="{{ url_for('login') }}" class="user-profile" title="Iniciar Sesión">
+                <i class="fa-solid fa-user"></i>
+            </a>
+            {% endif %}
+            <!-- 🔹 FIN DE LA LÓGICA 🔹 -->
+
+            <button class="menu-toggle" id="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Cursos -->
+        <section id="cursos" class="py-16">
+            <div class="container mx-auto px-6 max-w-5xl">
+                <h1 class="text-4xl md:text-5xl font-bold text-center text-gray-900 mb-12">
+                    Explora nuestros cursos
+                </h1>
+
+                <div class="flex flex-col md:flex-row items-center bg-blue-200 rounded-xl shadow-lg p-6 mb-8">
+                    <div class="md:w-1/3 flex-shrink-0 mb-4 md:mb-0 md:mr-6">
+                        <div class="flex items-center justify-center p-4 rounded-xl text-white h-full"
+                            style="background-color: #1E3A8A;"> <i class="fas fa-file-alt text-4xl mr-3"></i>
+                            <span class="text-xl font-semibold text-center">HERRAMIENTAS OFIMÁTICAS</span>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 text-gray-700 leading-relaxed text-lg">
+                        Este curso enseña el uso práctico de las principales aplicaciones digitales necesarias en el
+                        ámbito académico y laboral. Se aprende a manejar programas de ofimática (procesadores de texto,
+                        hojas de cálculo, presentaciones), herramientas colaborativas en la nube y recursos tecnológicos
+                        para la gestión de información, productividad y comunicación eficiente.
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center bg-green-200 rounded-xl shadow-lg p-6 mb-8">
+                    <div class="md:w-1/3 flex-shrink-0 mb-4 md:mb-0 md:mr-6 order-last md:order-first">
+                        <div class="flex items-center justify-center p-4 rounded-xl text-white h-full"
+                            style="background-color: #10B981;"> <i class="fas fa-code text-4xl mr-3"></i>
+                            <span class="text-xl font-semibold text-center">PROGRAMACIÓN ESTRUCTURADA</span>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 text-gray-700 leading-relaxed text-lg order-first md:order-last">
+                        En este curso se introducen los fundamentos de la programación, aplicando estructuras lógicas y
+                        secuenciales para resolver problemas mediante algoritmos. Se utilizan conceptos como variables,
+                        condicionales, ciclos y funciones, con el objetivo de desarrollar programas claros, ordenados y
+                        fáciles de mantener. Es la base para aprender a pensar como programador.
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center bg-yellow-200 rounded-xl shadow-lg p-6">
+                    <div class="md:w-1/3 flex-shrink-0 mb-4 md:mb-0 md:mr-6">
+                        <div class="flex items-center justify-center p-4 rounded-xl text-gray-900 h-full"
+                            style="background-color: #FACC15;"> <i class="fas fa-comments text-4xl mr-3"></i>
+                            <span class="text-xl font-semibold text-center">EXPERIENCIAS FORMATIVAS</span>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 text-gray-700 leading-relaxed text-lg">
+                        Este curso busca aplicar los conocimientos teóricos en proyectos prácticos. A través de
+                        ejercicios, retos y pequeños sistemas, los estudiantes consolidan su lógica de programación,
+                        mejoran su capacidad de análisis y desarrollan soluciones creativas y funcionales. Se promueve
+                        el trabajo en equipo y las buenas prácticas de codificación.
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Profesore del Programa -->
+
+        <section id="profesores" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <h2 class="text-4xl md:text-5xl font-bold text-center text-gray-900 mb-12">
+                    Cuerpo docente
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <div class="bg-white rounded-2xl shadow-lg p-6 text-center 
+                        transition-transform transform hover:scale-105 duration-300 ease-in-out">
+                        <div class="bg-yellow-100 rounded-xl p-4 mb-4" style="background-color: #FACC1580;">
+                            <img src="{{ url_for('static', filename='image/prof_manzo.png') }}"
+                                alt="Profesor Luis Manzo"
+                                class="w-32 h-32 rounded-full object-cover mx-auto mb-4 border-4 border-white">
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">Profesor Luis Manzo</h3>
+                            <p class="text-blue-950 text-sm italic">lmanzo@vallegrande.edu.pe</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg p-6 text-center 
+                        transition-transform transform hover:scale-105 duration-300 ease-in-out">
+                        <div class="bg-blue-50 rounded-xl p-4 mb-4" style="background-color: #1E3A8A80;">
+                            <img src="{{ url_for('static', filename='image/prof_jesus.png') }}"
+                                alt="Profesor Jesús Canales"
+                                class="w-32 h-32 rounded-full object-cover mx-auto mb-4 border-4 border-white">
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">Profesor Jesús Canales</h3>
+                            <p class="text-blue-950 text-sm italic">jcanales@vallegrande.edu.pe</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg p-6 text-center 
+                        transition-transform transform hover:scale-105 duration-300 ease-in-out">
+                        <div class="bg-green-100 rounded-xl p-4 mb-4" style="background-color: #10B98180;">
+                            <img src="{{ url_for('static', filename='image/prof_ebert.png') }}"
+                                alt="Profesor Ebert Ocares"
+                                class="w-32 h-32 rounded-full object-cover mx-auto mb-4 border-4 border-white">
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">Profesor Ebert Ocares</h3>
+                            <p class="text-blue-950 text-sm italic">eocares@vallegrande.edu.pe</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg p-6 text-center 
+                        transition-transform transform hover:scale-105 duration-300 ease-in-out">
+                        <div class="bg-green-100 rounded-xl p-4 mb-4" style="background-color: #10B98180;">
+                            <img src="{{ url_for('static', filename='image/prof_fatima.png') }}"
+                                alt="Profesora Fatima Matos"
+                                class="w-32 h-32 rounded-full object-cover mx-auto mb-4 border-4 border-white">
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">Profesora Fatima Matos</h3>
+                            <p class="text-blue-950 text-sm italic">fmatos@vallegrande.edu.pe</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg p-6 text-center 
+                        transition-transform transform hover:scale-105 duration-300 ease-in-out">
+                        <div class="bg-yellow-100 rounded-xl p-4 mb-4" style="background-color: #FACC1580;">
+                            <img src="{{ url_for('static', filename='image/prof_juana.png') }}"
+                                alt="Profesora Juana Arenas"
+                                class="w-32 h-32 rounded-full object-cover mx-auto mb-4 border-4 border-white">
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">Profesora Juana Arenas</h3>
+                            <p class="text-blue-950 text-sm italic">jarenas@vallegrande.edu.pe</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg p-6 text-center 
+                        transition-transform transform hover:scale-105 duration-300 ease-in-out">
+                        <div class="bg-blue-50 rounded-xl p-4 mb-4" style="background-color: #1E3A8A80;">
+                            <img src="{{ url_for('static', filename='image/prof_valery.png') }}"
+                                alt="Profesora Valery Chumpitaz"
+                                class="w-32 h-32 rounded-full object-cover mx-auto mb-4 border-4 border-white">
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">Profesora Valery Chumpitaz</h3>
+                            <p class="text-blue-950 text-sm italic">valerychumpitaz@vallegrande.edu.pe</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Mejor futuro -->
+
+        <section id="mejor_futuro" class="py-16">
+            <div class="container mx-auto px-6 max-w-4xl text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
+                    Un mejor FUTURO
+                </h2>
+                <div class="p-4 rounded-xl">
+                    <img src="{{ url_for('static', filename='image/per_1.png') }}" alt="Ilustración de un mejor futuro"
+                        class="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto h-auto">
+                </div>
+            </div>
+        </section>
+
+        <!-- Concepto del programa -->
+
+        <section id="concepto" class="py-12" style="background-color: #FACC1540;">
+            <div class="container mx-auto px-6 max-w-5xl text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+                    Programa de Transitabilidad 2025 – Instituto Valle Grande
+                </h2>
+
+                <div class="flex justify-center items-center gap-8 mb-8">
+                    <img src="{{ url_for('static', filename='image/isotipo_vg.png') }}"
+                        alt="Logo Instituto Valle Grande" class="h-20 sm:h-24 object-contain">
+                    <img src="{{ url_for('static', filename='image/isotipo_prog.png') }}"
+                        alt="Logo Programa de Transitabilidad" class="h-20 sm:h-24 object-contain">
+                </div>
+
+                <p class="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
+                    Una oportunidad para que los estudiantes del tercer grado de secundaria inicien su
+                    formación superior desde el colegio. Este programa les permite desarrollar competencias
+                    digitales, obtener experiencia práctica y recibir acompañamiento para descubrir su
+                    vocación profesional.
+                </p>
+            </div>
+        </section>
+
+        <section class="py-1" style="background-color: #fefafa;">
+            <div class="container mx-auto px-2 text-center">
+            </div>
+        </section>
+
+        <!-- Costos del programa -->
+
+        <section id="costo" class="py-12" style="background-color: #10B98160;">
+            <div class="container mx-auto px-6 max-w-4xl text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
+                    COSTO
+                </h2>
+
+                <div class="mb-8">
+                    <img src="{{ url_for('static', filename='image/bolsa_dinero.png') }}" alt="Bolsa de Dinero"
+                        class="mx-auto w-32 h-32 object-contain">
+                </div>
+
+                <div class="inline-block bg-white rounded-xl shadow-lg p-6 mb-8 pulse-animation">
+                    <p class="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight">
+                        S/ 200
+                    </p>
+                    <p class="text-xl md:text-2xl italic text-gray-700">
+                        (pago anual único)
+                    </p>
+                </div>
+
+                <p class="text-lg text-gray-800 leading-relaxed max-w-3xl mx-auto">
+                    Incluye materiales digitales, 12 sesiones plenarias, talleres y asesorías personalizadas.
+                </p>
+            </div>
+        </section>
+
+        <section class="py-1" style="background-color: #fefafa;">
+            <div class="container mx-auto px-2 text-center">
+            </div>
+        </section>
+
+        <!-- Beneficios del programa -->
+
+        <section id="beneficios" class="py-20" style="background-color: #1E3A8C60;">
+            <div class="container mx-auto px-6">
+
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 text-center mb-8">
+                    BENEFICIOS
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <div class="bg-white rounded-2xl shadow-lg p-6 text-center h-full flex flex-col justify-center items-center
+                        transition-transform duration-300 transform hover:scale-105 hover:shadow-xl">
+                        <h3 class="text-2xl font-bold text-primario mb-3">
+                            Certificación Anual
+                        </h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            "Asistente en Ofimática en la Nube"
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg p-6 text-center h-full flex flex-col justify-center items-center
+                        transition-transform duration-300 transform hover:scale-105 hover:shadow-xl">
+                        <h3 class="text-2xl font-bold text-primario mb-3">
+                            Ingreso Directo
+                        </h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Carrera de Análisis de Sistemas Empresariales sin examen de admisión (si el estudiante
+                            lo decide).
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg p-6 text-center h-full flex flex-col justify-center items-center
+                        transition-transform duration-300 transform hover:scale-105 hover:shadow-xl">
+                        <h3 class="text-2xl font-bold text-primario mb-3">
+                            Convalidación de Cursos
+                        </h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Las materias aprobadas en el programa no se repiten en la carrera.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg p-6 text-center h-full flex flex-col justify-center items-center
+                        transition-transform duration-300 transform hover:scale-105 hover:shadow-xl">
+                        <h3 class="text-2xl font-bold text-primario mb-3">
+                            Desarrollo de Competencias Digitales
+                        </h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Útiles para cualquier carrera profesional.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg p-6 text-center h-full flex flex-col justify-center items-center
+                        transition-transform duration-300 transform hover:scale-105 hover:shadow-xl">
+                        <h3 class="text-2xl font-bold text-primario mb-3">
+                            Aprendizaje Basados en Proyectos (ABP)
+                        </h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Clases prácticas, trabajo en equipo y contacto con egresados y docentes.
+                            </D>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg p-6 text-center h-full flex flex-col justify-center items-center
+                        transition-transform duration-300 transform hover:scale-105 hover:shadow-xl">
+                        <h3 class="text-2xl font-bold text-primario mb-3">
+                            Formación integral y en valores
+                        </h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Acompañamiento humano y orientación vocacional durante los tres años.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-1" style="background-color: #fefafa;">
+            <div class="container mx-auto px-2 text-center">
+            </div>
+        </section>
+
+        <!-- ¿Cómo aprobar? -->
+
+        <section id="aprobar" class="py-20" style="background-color: #FACC1540;">
+            <div class="container mx-auto px-6 max-w-6xl">
+
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 text-center mb-12">
+                    ¿CÓMO SE APRUEBAN LAS MATERIAS?
+                </h2>
+
+                <p class="text-xl text-gray-800 text-center mb-10 leading-relaxed">
+                    La evaluación se realiza de manera conjunta entre el colegio y Valle Grande.
+                </p>
+
+                <div class="flex flex-col md:flex-row items-center gap-10 mb-12">
+
+                    <div class="md:w-2/3 grid grid-cols-1 sm:grid-cols-3 gap-6">
+
+                        <div class="bg-white rounded-2xl shadow-lg p-6 text-center h-full flex flex-col justify-center items-center
+                            transition-transform duration-300 transform hover:scale-105 hover:shadow-xl">
+                            <span class="text-5xl font-extrabold text-primario mb-3">1</span>
+                            <p class="text-gray-700 leading-relaxed">
+                                Actividades y evaluaciones del programa (talleres, proyectos y exámenes).
+                            </p>
+                        </div>
+
+                        <div class="bg-white rounded-2xl shadow-lg p-6 text-center h-full flex flex-col justify-center items-center
+                            transition-transform duration-300 transform hover:scale-105 hover:shadow-xl">
+                            <span class="text-5xl font-extrabold text-primario mb-3">2</span>
+                            <p class="text-gray-700 leading-relaxed">
+                                Nota del curso de Educación para el Trabajo (EPT) en el colegio, guiada por una docente
+                                capacitada por Valle Grande.
+                            </p>
+                        </div>
+
+                        <div class="bg-white rounded-2xl shadow-lg p-6 text-center h-full flex flex-col justify-center items-center
+                            transition-transform duration-300 transform hover:scale-105 hover:shadow-xl">
+                            <span class="text-5xl font-extrabold text-primario mb-3">3</span>
+                            <p class="text-gray-700 leading-relaxed">
+                                La nota final se obtiene combinando ambos componentes.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="md:w-1/3 flex-shrink-0">
+                        <img src="{{ url_for('static', filename='image/per_m2_inverso.png') }}"
+                            alt="Estudiante con Tablet" class="w-64 mx-auto block">
+                    </div>
+
+                </div>
+
+                <p class="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-10 leading-relaxed">
+                    Al aprobar, el estudiante recibe la certificación y el curso queda convalidado en la
+                    <span class="text-primario">carrera.</span>
+                </p>
+
+                <div class="text-gray-700 p-8 rounded-xl shadow-lg" style="background-color:#FEFAFA60">
+                    <p class="text-xl md:text-2xl italic text-center leading-relaxed">
+                        El programa está diseñado para estudiantes que inician en tercero de secundaria y
+                        se desarrolla durante tercero, cuarto y quinto año.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="py-1" style="background-color: #fefafa;">
+            <div class="container mx-auto px-2 text-center">
+            </div>
+        </section>
+
+        <!-- Cronograma del programa -->
+
+        <section id="cronograma" class="py-20" style="background-color:#10B98160;">
+            <div class="container mx-auto px-6 max-w-6xl">
+
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 text-center mb-12">
+                    CRONOGRAMA
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+
+                    <div class="bg-white rounded-2xl shadow-lg p-8 text-center h-full flex flex-col justify-center items-center
+                        transition-transform duration-300 transform hover:scale-105 hover:shadow-xl">
+                        <i class="fas fa-calendar-alt text-5xl text-primario mb-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-800">12 Sesiones</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            plenarias durante el año.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg p-8 text-center h-full flex flex-col justify-center items-center
+                        transition-transform duration-300 transform hover:scale-105 hover:shadow-xl">
+                        <i class="fas fa-map-marked-alt text-5xl text-primario mb-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-800">3 Visitas</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            de estudio.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg p-8 text-center h-full flex flex-col justify-center items-center
+                        transition-transform duration-300 transform hover:scale-105 hover:shadow-xl">
+                        <i class="fas fa-tasks text-5xl text-primario mb-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-800">Diversas Actividades</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            prácticas.
+                        </p>
+                    </div>
+                </div>
+                <div class="backdrop-blur-sm p-6 rounded-xl shadow-lg" style="background-color: #fefafa50;">
+                    <p class="text-xl md:text-2xl italic text-gray-800 text-center leading-relaxed">
+                        La última sesión corresponde a la presentación de proyectos y ceremonia de clausura.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer class="bg-blue-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-6">
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+
+                <div class="md:text-center"> <a href="{{ url_for('mas_info') }}"
+                        class="flex items-center justify-center md:justify-center gap-3 mb-4">
+                        <img src="{{ url_for('static', filename='image/logo_piepag.png') }}" alt="Logo Programa"
+                            class="h-20 w-auto">
+                    </a>
+                    <p class="nunito1 text-sm text-gray-300 leading-relaxed text-center">
+                        Conectando tu colegio con tu futuro profesional.
+                    </p>
+                </div>
+
+                <div>
+                    <h5 class="poppins3 text-xl font-bold mb-4">Navegación</h5>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="{{ url_for('mas_info') }}" class="nunito2 text-white hover:text-yellow-400 transition-colors duration-200">
+                                Información del programa
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('inscribete_login') }}" class="nunito2 text-white hover:text-yellow-400 transition-colors duration-200">
+                                Inscríbete
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#cursos" class="nunito2 text-white hover:text-yellow-400 transition-colors duration-200">
+                                Cursos del Programa
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#profesores" class="nunito2 text-white hover:text-yellow-400 transition-colors duration-200">
+                                Profesores del Programa
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#mejor_futuro" class="nunito2 text-white hover:text-yellow-400 transition-colors duration-200">
+                                ¿Buscando un mejor futuro?
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#concepto" class="nunito2 text-white hover:text-yellow-400 transition-colors duration-200">
+                                Programa de Transitabilidad
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#costo" class="nunito2 text-white hover:text-yellow-400 transition-colors duration-200">
+                                Inversión
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#beneficios" class="nunito2 text-white hover:text-yellow-400 transition-colors duration-200">
+                                Beneficios del Programa
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#aprobar" class="nunito2 text-white hover:text-yellow-400 transition-colors duration-200">
+                                ¿Cómo aprobar?
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#cronograma" class="nunito2 text-white hover:text-yellow-400 transition-colors duration-200">
+                                Cronograma Anual
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="poppins3 text-xl font-bold mb-4">Contacto</h5>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center gap-3 nunito2">
+                            <i class="fa-solid fa-envelope fa-lg w-6 text-center"></i>
+                            <span>info@transitabilidad.pe</span>
+                        </li>
+                        <li class="flex items-center gap-3 nunito2">
+                            <i class="fa-solid fa-globe fa-lg w-6 text-center"></i>
+                            <span>vallegrande.edu.pe</span>
+                        </li>
+                    </ul>
+
+                    <h5 class="poppins3 text-xl font-bold mb-4">Síguenos</h5>
+                    <div class="flex gap-4">
+                        <a href="https://www.facebook.com/ValleGrandeOficial" target="_blank" rel="noopener noreferrer"
+                            class="text-3xl text-gray-300 hover:text-yellow-400 transition-colors duration-200">
+                            <i class="fa-brands fa-facebook-square"></i>
+                        </a>
+                        <a href="https://www.instagram.com/vallegrandeoficial/" target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-3xl text-gray-300 hover:text-yellow-400 transition-colors duration-200">
+                            <i class="fa-brands fa-instagram-square"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@vallegrande" target="_blank" rel="noopener noreferrer"
+                            class="text-3xl text-gray-300 hover:text-yellow-400 transition-colors duration-200">
+                            <i class="fa-brands fa-youtube-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="border-t border-blue-700 my-8">
+
+            <div class="text-center text-gray-400 nunito1 text-sm">
+                &copy; 2025 Programa de Transitabilidad. Todos los derechos reservados.
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/header.js') }}"></script>
+
+</body>
+
+</html>

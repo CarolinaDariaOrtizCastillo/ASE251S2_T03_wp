@@ -1,0 +1,42 @@
+/* 🎨 base.css */
+:root {
+  --color-primario: #1E3A8A;
+  --color-secundario: #FACC15;
+  --color-verde: #10B981;
+  --color-texto: #1f2937;
+  --color-fondo: #fefafa;
+  --color-gris-claro: #f3f4f6;
+  --color-sombra: rgba(0, 0, 0, 0.1);
+
+  --fuente-nunito: 'Nunito', sans-serif;
+  --fuente-poppins: 'Poppins', sans-serif;
+  --fuente-raleway: 'Raleway', sans-serif;
+
+  --texto-sm: 14px;
+  --texto-md: 16px;
+  --texto-lg: 20px;
+  --titulo-md: 28px;
+  --titulo-lg: 36px;
+
+  --espaciado-sm: 8px;
+  --espaciado-md: 16px;
+  --espaciado-lg: 32px;
+
+  --radio-sm: 8px;
+  --radio-md: 12px;
+  --radio-lg: 24px;
+}
+
+/* Reset general */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  font-family: var(--fuente-nunito);
+  line-height: 1.6;
+}

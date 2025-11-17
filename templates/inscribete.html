@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programa de Transitabilidad</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@400;600&family=Raleway:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/carrusel.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+
+<body>
+
+    <!-- HEADER Y NAVBAR FUNCIONAL RESPONSIVE -->
+
+    <header class="navbar">
+        <a href="{{ url_for('inicio') }}" class="logo">
+            <img src="{{ url_for('static', filename='image/logo_web.png') }}" alt="Logo Programa">
+        </a>
+
+        <div class="nav-container">
+
+            <nav class="menu" id="nav-menu">
+                <ul>
+                    <li><a href="{{ url_for('inicio') }}">¿Quiénes Somos?</a></li>
+                    <li><a href="{{ url_for('inscribete') }}" class="active">INSCRÍBETE</a></li>
+                    <li><a href="{{ url_for('contactanos') }}">Contáctanos</a></li>
+                </ul>
+            </nav>
+
+            <!-- 
+          🔹 ¡AQUÍ ESTÁ LA LÓGICA! 🔹
+          Comprueba si el usuario ha iniciado sesión.
+        -->
+            {% if session['user_id'] %}
+            <!-- SI EL USUARIO SÍ ESTÁ LOGUEADO -->
+            <!-- Enlaza a 'logout' y muestra un ícono de "salir" -->
+            <a href="{{ url_for('logout') }}" class="user-profile" title="Cerrar Sesión">
+                <i class="fa-solid fa-sign-out-alt"></i>
+            </a>
+            {% else %}
+            <!-- SI EL USUARIO NO ESTÁ LOGUEADO -->
+            <!-- Enlaza a 'login' y muestra el ícono de "usuario" -->
+            <a href="{{ url_for('login') }}" class="user-profile" title="Iniciar Sesión">
+                <i class="fa-solid fa-user"></i>
+            </a>
+            {% endif %}
+            <!-- 🔹 FIN DE LA LÓGICA 🔹 -->
+
+            <button class="menu-toggle" id="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- PASOS A SEGUIR-->
+
+        <section id="pasos" class="container mx-auto px-6 py-16">
+
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">
+                Inscríbete <span class="text-yellow-400">en un instante</span>
+            </h2>
+
+            <div class="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12">
+
+                <div class="flex-1">
+                    <div class="flex flex-wrap justify-center gap-x-2 gap-y-8 sm:gap-x-0">
+
+                        <div class="flex items-center">
+                            <div class="flex flex-col items-center text-center w-32 md:w-36">
+                                <div
+                                    class="w-20 h-20 rounded-full bg-[#F2B13B] flex items-center justify-center text-4xl font-bold text-black shadow-md">
+                                    1</div>
+                                <p class="h-20 mt-3 text-sm font-medium px-2">Elige tu perfil (Estudiante o
+                                    Institución).
+                                </p>
+                            </div>
+                            <i class="fa-solid fa-arrow-right text-3xl text-gray-400 hidden sm:block mx-2 md:mx-4"></i>
+                        </div>
+
+                        <div class="flex items-center">
+                            <div class="flex flex-col items-center text-center w-32 md:w-36">
+                                <div
+                                    class="w-20 h-20 rounded-full bg-[#10B981] flex items-center justify-center text-4xl font-bold text-black shadow-md">
+                                    2</div>
+                                <p class="h-20 mt-3 text-sm font-medium px-2">Llena tus datos en el formulario.</p>
+                            </div>
+                            <i class="fa-solid fa-arrow-right text-3xl text-gray-400 hidden sm:block mx-2 md:mx-4"></i>
+                        </div>
+
+                        <div class="flex items-center">
+                            <div class="flex flex-col items-center text-center w-32 md:w-36">
+                                <div
+                                    class="w-20 h-20 rounded-full bg-[#F2B13B] flex items-center justify-center text-4xl font-bold text-black shadow-md">
+                                    3</div>
+                                <p class="h-20 mt-3 text-sm font-medium px-2">Envía tu solicitud.</p>
+                            </div>
+                            <i class="fa-solid fa-arrow-right text-3xl text-gray-400 hidden sm:block mx-2 md:mx-4"></i>
+                        </div>
+
+                        <div class="flex items-center">
+                            <div class="flex flex-col items-center text-center w-32 md:w-36">
+                                <div
+                                    class="w-20 h-20 rounded-full bg-[#10B981] flex items-center justify-center text-4xl font-bold text-black shadow-md">
+                                    4</div>
+                                <p class="h-20 mt-3 text-sm font-medium px-2">¡Listo! Recibirás la confirmación por
+                                    correo.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-16">
+                        <a href="#formulario"
+                            class="inline-block bg-[#5F3DC4] text-white text-lg font-bold py-3 px-10 rounded-full shadow-lg transform hover:scale-105 transition-transform duration-300">
+                            ¡VAMOS AL FORMULARIO!
+                        </a>
+                    </div>
+                </div>
+
+                <div class="w-48 lg:w-64 mt-8 lg:mt-0">
+                    <img src="{{ url_for('static', filename='image/girl.png') }}" alt="Personaje del programa">
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CARRUSEL DE FOTOS | GALERÍA-->
+        <section id="galeria" class="py-16 bg-gray-50">
+            <section class="carousel">
+                <div class="carousel">
+                    <div class="carousel">
+                        <div class="carousel-inner">
+                            {% for img in imagenes %}
+                            <div class="carousel-item">
+                                <img src="{{ img }}" alt="Imagen {{ loop.index }}">
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <button id="prev" class="carousel-btn">&#10094;</button>
+                        <button id="next" class="carousel-btn">&#10095;</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FORMULARIOS-->
+            <section id="formulario" class="py-16 bg-gray-50">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mt-20 mb-12">
+                    Puedes escoger tu formulario
+                </h2>
+                <div class="flex flex-col md:flex-row justify-center items-stretch gap-8 lg:gap-12">
+
+                    <div
+                        class="flex-1 max-w-md bg-white border-4 border-yellow-400 rounded-2xl shadow-lg p-8 text-center transform hover:scale-[1.03] transition-transform duration-300">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">SOY ESTUDIANTE</h3>
+                        <img src="{{ url_for('static', filename='image/per_f3.png') }}" alt="Personaje Estudiante"
+                            class="h-48 mx-auto mb-4">
+                        <p class="text-gray-600 mb-8">
+                            Participa en talleres interactivos, recibe orientación vocacional de expertos y conecta con
+                            oportunidades educativas y laborales.
+                        </p>
+                        <a href="{{ url_for('formulario_est') }}"
+                            class="inline-block bg-yellow-400 text-gray-900 font-bold py-3 px-10 rounded-full text-lg shadow-md hover:bg-yellow-500 transition-colors">
+                            VER FORMULARIO ESTUDIANTE
+                        </a>
+                    </div>
+
+                    <div
+                        class="flex-1 max-w-md bg-white border-4 border-green-500 rounded-2xl shadow-lg p-8 text-center transform hover:scale-[1.03] transition-transform duration-300">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">SOMOS UNA INSTITUCIÓN EDUCATIVA</h3>
+                        <img src="{{ url_for('static', filename='image/per_m1.png') }}" alt="Personaje Institución"
+                            class="h-48 mx-auto mb-4">
+                        <p class="text-gray-600 mb-8">
+                            Brinda a tus estudiantes herramientas clave para su futuro. Nuestro programa fortalece su
+                            orientación vocacional.
+                        </p>
+                        <a href="{{ url_for('formulario_ins') }}"
+                            class="inline-block bg-green-500 text-white font-bold py-3 px-10 rounded-full text-lg shadow-md hover:bg-green-600 transition-colors">
+                            VER FORMULARIO INSTITUCIÓN
+                        </a>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- BENEFICIOS2-->
+            <section id="beneficios2" class="container mx-auto px-6 py-20">
+
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">
+                    Todos nuestros participantes obtienen
+                </h2>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12 max-w-5xl mx-auto">
+
+                    <div class="flex flex-col items-center text-center">
+                        <img src="{{ url_for('static', filename='image/orientacion.png') }}"
+                            alt="Icono de Orientación Vocacional" class="h-16 w-auto mb-4">
+                        <h3 class="text-lg font-bold text-primario uppercase">
+                            Orientación<br>Vocacional
+                        </h3>
+                    </div>
+
+                    <div class="flex flex-col items-center text-center">
+                        <img src="{{ url_for('static', filename='image/desarrollo.png') }}"
+                            alt="Icono de Desarrollo de Habilidades" class="h-16 w-auto mb-4">
+                        <h3 class="text-lg font-bold text-primario uppercase">
+                            Desarrollo<br>de Habilidades
+                        </h3>
+                    </div>
+
+                    <div class="flex flex-col items-center text-center">
+                        <img src="{{ url_for('static', filename='image/conexion.png') }}"
+                            alt="Icono de Conexión con Universidades" class="h-16 w-auto mb-4">
+                        <h3 class="text-lg font-bold text-primario uppercase">
+                            Conexión con<br>Universidades
+                        </h3>
+                    </div>
+
+                    <div class="flex flex-col items-center text-center">
+                        <img src="{{ url_for('static', filename='image/certificado.png') }}"
+                            alt="Icono de Certificado de Participación" class="h-16 w-auto mb-4">
+                        <h3 class="text-lg font-bold text-primario uppercase">
+                            Certificado de<br>Participación
+                        </h3>
+                    </div>
+
+                </div>
+
+            </section>
+
+    </main>
+
+
+    <!-- FOOTER-->
+
+    <footer class="bg-blue-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-6">
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+
+                <div class="md:text-center"> <a href="{{ url_for('inicio') }}"
+                        class="flex items-center justify-center md:justify-center gap-3 mb-4">
+                        <img src="{{ url_for('static', filename='image/logo_piepag.png') }}" alt="Logo Programa"
+                            class="h-20 w-auto">
+                    </a>
+                    <p class="nunito1 text-sm text-gray-300 leading-relaxed text-center">
+                        Conectando tu colegio con tu futuro profesional.
+                    </p>
+                </div>
+
+                <div>
+                    <h5 class="poppins3 text-xl font-bold mb-4">Navegación</h5>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="{{ url_for('inicio') }}" class="nunito2 hover:text-yellow-400 transition-colors duration-200">
+                                ¿Quiénes somos?
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('inscribete') }}"
+                                class="nunito2 hover:text-yellow-400 transition-colors duration-200">
+                                Inscríbete
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#pasos" class="nunito2 hover:text-yellow-400 transition-colors duration-200">
+                                Pasos para inscribirse
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#formulario" class="nunito2 hover:text-yellow-400 transition-colors duration-200">
+                                Formularios de solicitud
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#beneficios2" class="nunito2 hover:text-yellow-400 transition-colors duration-200">
+                                Ventajas
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="poppins3 text-xl font-bold mb-4">Contacto</h5>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center gap-3 nunito2">
+                            <i class="fa-solid fa-envelope fa-lg w-6 text-center"></i>
+                            <span>info@transitabilidad.pe</span>
+                        </li>
+                        <li class="flex items-center gap-3 nunito2">
+                            <i class="fa-solid fa-globe fa-lg w-6 text-center"></i>
+                            <span>vallegrande.edu.pe</span>
+                        </li>
+                    </ul>
+
+                    <h5 class="poppins3 text-xl font-bold mb-4">Síguenos</h5>
+                    <div class="flex gap-4">
+                        <a href="https://www.facebook.com/ValleGrandeOficial" target="_blank" rel="noopener noreferrer"
+                            class="text-3xl text-gray-300 hover:text-yellow-400 transition-colors duration-200">
+                            <i class="fa-brands fa-facebook-square"></i>
+                        </a>
+                        <a href="https://www.instagram.com/vallegrandeoficial/" target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-3xl text-gray-300 hover:text-yellow-400 transition-colors duration-200">
+                            <i class="fa-brands fa-instagram-square"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@vallegrande" target="_blank" rel="noopener noreferrer"
+                            class="text-3xl text-gray-300 hover:text-yellow-400 transition-colors duration-200">
+                            <i class="fa-brands fa-youtube-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="border-t border-blue-700 my-8">
+
+            <div class="text-center text-gray-400 nunito1 text-sm">
+                &copy; 2025 Programa de Transitabilidad. Todos los derechos reservados.
+            </div>
+
+        </div>
+    </footer>
+
+
+    <script src="{{ url_for('static', filename='js/carrusel.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/header.js') }}"></script>
+
+</body>
+
+</html>

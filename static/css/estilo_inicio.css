@@ -1,0 +1,79 @@
+/* =========== ESTILOS: INICIO =============== */
+
+/* Cards del hero */
+.hero-cards {
+  display: flex;
+  gap: var(--espaciado-md);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero-cards .card {
+  flex: 1 1 30%;
+  text-align: center;
+}
+
+.hero-cards img {
+  width: 100%;
+  border-radius: var(--radio-md);
+}
+
+/* Descripción */
+.descripcion {
+  max-width: 900px;
+  margin: var(--espaciado-lg) auto;
+  text-align: center;
+  font-size: var(--texto-md);
+  color: var(--color-texto);
+}
+
+/* Beneficios */
+.benefits-section {
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-lg);
+  justify-content: center;
+}
+
+.badges {
+  display: flex;
+  gap: var(--espaciado-sm);
+  flex-wrap: wrap;
+}
+
+.badge-full-width {
+  display: block;
+  margin-top: var(--espaciado-sm);
+}
+
+/* Metas */
+.goals-section {
+  text-align: center;
+  padding: var(--espaciado-lg) 0;
+}
+
+.goals-container {
+  display: flex;
+  justify-content: center;
+  gap: var(--espaciado-md);
+  flex-wrap: wrap;
+}
+
+.goal-card {
+  background: var(--color-fondo);
+  border-radius: var(--radio-md);
+  box-shadow: var(--sombra-base);
+  padding: var(--espaciado-md);
+  width: 280px;
+}
+
+/* Video */
+.video-section {
+  text-align: center;
+}
+
+.video-description {
+  max-width: 900px;
+  margin: var(--espaciado-md) auto;
+  color: var(--color-texto);
+}

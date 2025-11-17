@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programa de Transitabilidad</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@400;600&family=Raleway:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/carrusel.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
+</head>
+
+<body>
+
+    <!-- HEADER Y NAVBAR FUNCIONAL RESPONSIVE -->
+
+    <header class="navbar">
+        <a href="{{ url_for('mas_info') }}" class="logo">
+            <img src="{{ url_for('static', filename='image/logo_web.png') }}" alt="Logo Programa">
+        </a>
+
+        <div class="nav-container">
+
+            <nav class="menu" id="nav-menu">
+                <ul>
+                    <li><a href="{{ url_for('mas_info') }}">¿Quiénes Somos?</a></li>
+                    <li><a href="{{ url_for('inscribete_login') }}" class="active">INSCRÍBETE</a></li>
+                    <li><a href="{{ url_for('contactanos_login') }}">Contáctanos</a></li>
+                </ul>
+            </nav>
+
+            <!-- 
+          🔹 ¡AQUÍ ESTÁ LA LÓGICA! 🔹
+          Comprueba si el usuario ha iniciado sesión.
+        -->
+            {% if session['user_id'] %}
+            <!-- SI EL USUARIO SÍ ESTÁ LOGUEADO -->
+            <!-- Enlaza a 'logout' y muestra un ícono de "salir" -->
+            <a href="{{ url_for('logout') }}" class="user-profile" title="Cerrar Sesión">
+                <i class="fa-solid fa-sign-out-alt"></i>
+            </a>
+            {% else %}
+            <!-- SI EL USUARIO NO ESTÁ LOGUEADO -->
+            <!-- Enlaza a 'login' y muestra el ícono de "usuario" -->
+            <a href="{{ url_for('login') }}" class="user-profile" title="Iniciar Sesión">
+                <i class="fa-solid fa-user"></i>
+            </a>
+            {% endif %}
+            <!-- 🔹 FIN DE LA LÓGICA 🔹 -->
+
+            <button class="menu-toggle" id="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- CARRUSEL CON BANNERS PERSUASIVOS -->
+    <section class="carousel">
+
+        <div class="carousel-inner">
+            {% for img in imagenes %}
+            <div class="carousel-item">
+                <img src="{{ img }}" alt="Imagen {{ loop.index }}">
+            </div>
+            {% endfor %}
+        </div>
+
+        <button id="prev" class="carousel-btn">&#10094;</button>
+        <button id="next" class="carousel-btn">&#10095;</button>
+
+    </section>
+
+    <!-- ESLOGAN DEL PROGRAMA -->
+
+    <section id="¿qué es?" class="container mx-auto px-6 py-20 overflow-hidden">
+        <div class="flex flex-col md:flex-row items-center gap-12">
+
+            <div class="md:w-1/2 relative z-10">
+
+                <h2 class="raleway3 text-4xl md:text-5xl text-center" style="line-height: 1.2; margin-bottom: 24px;">
+                    <span class="nunito2" style="font-weight: 600; color: var(--color-texto);">Descubre tu</span>
+                    <strong
+                        style="color: var(--color-primario); display: block; -webkit-text-stroke: 1px #112355; text-shadow: 0px 2px 4px rgba(0,0,0,0.1);">VOCACIÓN</strong>
+                    <span class="nunito2" style="font-weight: 600; color: var(--color-texto);">impulsa tu</span>
+                    <strong
+                        style="color: var(--color-secundario); display: block; -webkit-text-stroke: 1px #a16207; text-shadow: 0px 2px 4px rgba(0,0,0,0.1);">FUTURO</strong>
+                </h2>
+
+                <!-- BREVE CONCEPTO -->
+
+                <h3 class="nunito2 text-2xl md:text-3xl font-semibold text-center mb-4"
+                    style="color: var(--color-texto);">
+                    Tu aventura tecnológica empieza ahora
+                </h3>
+
+                <p class="nunito1 text-lg p-6 rounded-md shadow-sm bg-yellow-50 mb-6"
+                    style="color: #3a3a3a; line-height: 1.6; border-left: 5px solid var(--color-secundario);">
+                    Te acerca al fascinante mundo de la programación y desarrollo de apps, fomentando el trabajo en
+                    equipo y el crecimiento humano.
+                    Promovemos en los estudiantes la innovación y capacidad de crear soluciones disruptivas, asegurando
+                    a los padres y profesores una formación práctica que abre puertas a carreras profesionales con alta
+                    demanda e innovación.
+                </p>
+
+                <h4 class="raleway3 text-3xl md:text-4xl text-center font-bold"
+                    style="color: var(--color-primario); -webkit-text-stroke: 1px #112355; text-shadow: 0px 2px 4px rgba(0,0,0,0.1);">
+                    ¡Es el momento de programar su futuro!
+                </h4>
+            </div>
+
+            <!-- IMAGEN DE PERSONAJES CREADOS PARA EL PROGRAMA -->
+
+            <div
+                class="md:w-1/2 flex items-center justify-center md:scale-115 lg:scale-130 md:translate-x-10 lg:translate-x-10">
+
+                <img src="{{ url_for('static', filename='image/personajes.png') }}" alt="Personaje del programa"
+                    class="w-full max-w-md h-auto">
+            </div>
+        </div>
+    </section>
+
+    <!-- Redirección a la nueva información -->
+
+    <section id="nueva_info" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6 text-center">
+
+            <h2 class="text-3xl md:text-4xl font-bold text-primario mb-12">
+                ¿Quieres saber más?
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+                <a href="{{ url_for('info_importante', _anchor='profesores') }}"
+                    class="block p-8 rounded-2xl shadow-lg transition-transform transform hover:scale-105 h-full"
+                    style="background-color: #E0F2F1; border: 2px solid #B2DFDB;">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">
+                        ¿QUIÉNES SON TUS PROFESORES?
+                    </h3>
+                    <img src="{{ url_for('static', filename='image/profes.png') }}" alt="Ilustración de Profesores"
+                        class="h-48 mx-auto object-contain">
+                </a>
+
+                <a href="{{ url_for('info_importante', _anchor='cursos') }}"
+                    class="block p-8 rounded-2xl shadow-lg transition-transform transform hover:scale-105 h-full"
+                    style="background-color: #E0F2F1; border: 2px solid #B2DFDB;">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">
+                        ¿CUÁLES SON LOS CURSOS?
+                    </h3>
+                    <img src="{{ url_for('static', filename='image/cursos.png') }}" alt="Ilustración de Cursos"
+                        class="h-48 mx-auto object-contain">
+                </a>
+
+                <a href="{{ url_for('info_importante', _anchor='mejor_futuro') }}"
+                    class="block p-8 rounded-2xl shadow-lg transition-transform transform hover:scale-105 h-full"
+                    style="background-color: #E0F2F1; border: 2px solid #B2DFDB;">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">
+                        UN MEJOR FUTURO
+                    </h3>
+                    <img src="{{ url_for('static', filename='image/per_1.png') }}" alt="Ilustración de Futuro"
+                        class="h-48 mx-auto object-contain">
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Convenios -->
+
+    <section id="Convenios" class="py-20" style="background-color: #FACC1540;">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="poppins3 text-4xl font-bold mb-16" style="color: var(--color-texto);">
+                NUESTROS CONVENIOS
+            </h3>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center justify-center">
+
+                <a href="{{ url_for('convenios', _anchor='convenio-saco') }}"
+                    class="block transition-transform duration-300 hover:scale-110">
+                    <img src="{{ url_for('static', filename='image/saco_mejia.png') }}" alt="Convenio Gerardo Barco"
+                        class="w-full h-auto mx-auto max-w-[150px]">
+                </a>
+
+                <a href="{{ url_for('convenios', _anchor='convenio-srita') }}"
+                    class="block transition-transform duration-300 hover:scale-110">
+                    <img src="{{ url_for('static', filename='image/santa_rita.png') }}" alt="Convenio Santa Rita"
+                        class="w-full h-auto mx-auto max-w-[150px]">
+                </a>
+
+                <a href="{{ url_for('convenios', _anchor='convenio-sepulveda') }}"
+                    class="block transition-transform duration-300 hover:scale-110">
+                    <img src="{{ url_for('static', filename='image/sepulveda.png') }}" alt="Convenio Cañete JBS"
+                        class="w-full h-auto mx-auto max-w-[150px]">
+                </a>
+
+                <a href="{{ url_for('convenios', _anchor='convenio-centro') }}"
+                    class="block transition-transform duration-300 hover:scale-110">
+                    <img src="{{ url_for('static', filename='image/centro_de_mujeres.png') }}" alt="Convenio 20188"
+                        class="w-full h-auto mx-auto max-w-[150px]">
+                </a>
+
+                <a href="{{ url_for('convenios', _anchor='convenio-mariategui') }}"
+                    class="block transition-transform duration-300 hover:scale-110">
+                    <img src="{{ url_for('static', filename='image/mariategui.png') }}" alt="Convenio J de la Puerta"
+                        class-="w-full h-auto mx-auto max-w-[150px]">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nuevos testimonios -->
+
+    <section id="Testimonios" class="py-20" style="background-color: #fefafa;">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="poppins3 text-4xl font-bold mb-16" style="color: var(--color-texto);">
+                TESTIMONIOS
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <div class="testimonial-card bg-card-purple p-6 md:p-8">
+                    <img src="{{ url_for('static', filename='image/testimonio_4.png') }}" alt="Melany & Selene Medina"
+                        class="w-32 h-32 lg:w-40 lg:h-40 rounded-full object-cover mx-auto mb-4 border-4 border-white shadow-lg">
+                    <h4 class="poppins2 text-xl font-semibold mb-1" style="color: var(--color-texto);">José Medina
+                        Munayco</h4>
+                    <p class="nunito2 text-sm font-medium text-gray-700 mb-3">Padre de Familia
+                    </p>
+                    <hr class="border-t-2 w-1/2 mx-auto" style="border-color: #CFC5E0;">
+
+                    <p class="nunito1 text-sm text-gray-800 text-center mt-4">
+                        En el Programa de Transitabilidad mis hijas estudian en el colegio y a la par desarrollan
+                        habilidades digitales en Valle Grande.
+                    </p>
+                </div>
+
+                <div class="testimonial-card bg-card-yellow p-6 md:p-8 delay-1s">
+                    <img src="{{ url_for('static', filename='image/testimonio_5.png') }}" alt="Leandro Cahuana"
+                        class="w-32 h-32 lg:w-40 lg:h-40 rounded-full object-cover mx-auto mb-4 border-4 border-white shadow-lg">
+                    <h4 class="poppins2 text-xl font-semibold mb-1" style="color: var(--color-texto);">Camila Jara
+                        Saravia</h4>
+                    <p class="nunito2 text-sm font-medium text-gray-700 mb-3">Estudiante del Programa de Transitabilidad
+                    </p>
+                    <hr class="border-t-2 w-1/2 mx-auto" style="border-color: #F0E68C;">
+                    <p class="nunito1 text-sm text-gray-800 text-center mt-4">
+                        Ahora que empizo mi tercer año en el Programa de Transitabilidad, quiero seguir fortaleciendo
+                        mis habilidades para trabajar en equipo empleando las herramientas colaborativas de Google y
+                        aplicando los principios éticos en la creación de programas seguros, justos y confiables para
+                        todos.
+                    </p>
+                </div>
+
+                <div class="testimonial-card bg-card-green p-6 md:p-8 delay-2s">
+                    <img src="{{ url_for('static', filename='image/testimonio_6.png') }}" alt="José Cama"
+                        class="w-32 h-32 lg:w-40 lg:h-40 rounded-full object-cover mx-auto mb-4 border-4 border-white shadow-lg">
+                    <h4 class="poppins2 text-xl font-semibold mb-1" style="color: var(--color-texto);">Juan Jara
+                        Castilla</h4>
+                    <p class="nunito2 text-sm font-medium text-gray-700 mb-3">Padre de Familia</p>
+                    <hr class="border-t-2 w-1/2 mx-auto" style="border-color: #A3D9C9;">
+                    <p class="nunito1 text-sm text-gray-800 text-center mt-4">
+                        Me llena de orgullo saber que mi hija ha encontrado una vocación en el Programa de
+                        Transitabilidad.
+                        Observo que ha desarrollado un pensamiento crítico y creativo, y saber que está construyendo un
+                        futuro con propósito.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer class="bg-blue-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-6">
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+
+                <div class="md:text-center"> <a href="{{ url_for('mas_info') }}"
+                        class="flex items-center justify-center md:justify-center gap-3 mb-4">
+                        <img src="{{ url_for('static', filename='image/logo_piepag.png') }}" alt="Logo Programa"
+                            class="h-20 w-auto">
+                    </a>
+                    <p class="nunito1 text-sm text-gray-300 leading-relaxed text-center">
+                        Conectando tu colegio con tu futuro profesional.
+                    </p>
+                </div>
+
+                <div>
+                    <h5 class="poppins3 text-xl font-bold mb-4">Navegación</h5>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="{{ url_for('mas_info') }}"
+                                class="nunito2 hover:text-yellow-400 transition-colors duration-200">
+                                Información del Programa
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('inscribete_login') }}"
+                                class="nunito2 hover:text-yellow-400 transition-colors duration-200">
+                                Inscríbete
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#¿qué es?" class="nunito2 hover:text-yellow-400 transition-colors duration-200">
+                                ¿Qué es?
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#nueva_info" class="nunito2 hover:text-yellow-400 transition-colors duration-200">
+                                ¿Quieres saber más?
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#Convenios" class="nunito2 hover:text-yellow-400 transition-colors duration-200">
+                                Convenios
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#Testimonios" class="nunito2 hover:text-yellow-400 transition-colors duration-200">
+                                Testimonios
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="poppins3 text-xl font-bold mb-4">Contacto</h5>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center gap-3 nunito2">
+                            <i class="fa-solid fa-envelope fa-lg w-6 text-center"></i>
+                            <span>info@transitabilidad.pe</span>
+                        </li>
+                        <li class="flex items-center gap-3 nunito2">
+                            <i class="fa-solid fa-globe fa-lg w-6 text-center"></i>
+                            <span>vallegrande.edu.pe</span>
+                        </li>
+                    </ul>
+
+                    <h5 class="poppins3 text-xl font-bold mb-4">Síguenos</h5>
+                    <div class="flex gap-4">
+                        <a href="https://www.facebook.com/ValleGrandeOficial" target="_blank" rel="noopener noreferrer"
+                            class="text-3xl text-gray-300 hover:text-yellow-400 transition-colors duration-200">
+                            <i class="fa-brands fa-facebook-square"></i>
+                        </a>
+                        <a href="https://www.instagram.com/vallegrandeoficial/" target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-3xl text-gray-300 hover:text-yellow-400 transition-colors duration-200">
+                            <i class="fa-brands fa-instagram-square"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@vallegrande" target="_blank" rel="noopener noreferrer"
+                            class="text-3xl text-gray-300 hover:text-yellow-400 transition-colors duration-200">
+                            <i class="fa-brands fa-youtube-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="border-t border-blue-700 my-8">
+
+            <div class="text-center text-gray-400 nunito1 text-sm">
+                &copy; 2025 Programa de Transitabilidad. Todos los derechos reservados.
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/carrusel.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/header.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/inicio.js') }}"></script>
+
+</body>
+
+</html>
